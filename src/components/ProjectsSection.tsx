@@ -154,7 +154,7 @@ export function ProjectsSection() {
                       </div>
                     </div>
 
-                    {/* Mobile: static screenshot / placeholder */}
+                    {/* Mobile: static screenshot if available, otherwise a live iframe preview */}
                     <div className="block h-full w-full md:hidden">
                       {project.screenshotSrc ? (
                         <Image
@@ -165,9 +165,13 @@ export function ProjectsSection() {
                           className="object-cover object-top"
                         />
                       ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-[10px] text-slate-300">
-                          {project.name}
-                        </div>
+                        <iframe
+                          src={project.previewUrl}
+                          title={`${project.name} live preview`}
+                          loading="lazy"
+                          scrolling="no"
+                          className="pointer-events-none h-full w-full border-none"
+                        />
                       )}
                     </div>
                   </div>

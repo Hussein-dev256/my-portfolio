@@ -50,7 +50,7 @@ const services: Service[] = [
     imageSrc: "/SEO.svg",
     imageAlt: "Analytics graph with upward trend representing SEO growth",
     description:
-      "Technical and on-page SEO so your content loads fast, ranks better, and reaches the right audience.",
+      "Technical and on-page Search Engine Optimization so your content loads fast, ranks better, and reaches the right audience.",
   },
   {
     id: "automations",
