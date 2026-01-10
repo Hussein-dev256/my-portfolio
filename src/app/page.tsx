@@ -12,11 +12,23 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <main className="space-y-16 pb-16 pt-4 md:space-y-20 md:pt-8">
         <Hero />
+
+        <div className="section-separator" aria-hidden="true" />
         <ValueSection />
+
+        <div className="section-separator" aria-hidden="true" />
         <ServicesSection />
+
+        <div className="section-separator" aria-hidden="true" />
         <ProjectsSection />
+
+        <div className="section-separator" aria-hidden="true" />
         <WhyMeSection />
+
+        <div className="section-separator" aria-hidden="true" />
         <CallToActionSection />
+
+        <div className="section-separator" aria-hidden="true" />
         <ContactSection />
       </main>
       <Footer />

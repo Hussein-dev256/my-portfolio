@@ -91,7 +91,7 @@ export function Hero() {
         </div>
 
         {/* Tech logos row under hero: muted by default, full brand color on hover */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-6">
           {techLogos.map((tool) => (
             <div
               key={tool.name}
@@ -103,7 +103,7 @@ export function Hero() {
                 alt={`${tool.label} logo`}
                 width={40}
                 height={40}
-                className="h-8 w-8 opacity-60 grayscale transition-all duration-300 ease-out group-hover:opacity-100 group-hover:grayscale-0"
+                className="h-10 w-10 opacity-60 grayscale transition-all duration-300 ease-out group-hover:opacity-100 group-hover:grayscale-0"
               />
             </div>
           ))}

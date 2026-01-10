@@ -18,8 +18,8 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-strong: var(--accent-strong);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-poppins);
+  --font-mono: var(--font-poppins);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,5 +57,9 @@ body {
 
   .card-glow {
     @apply rounded-2xl border border-emerald-500/15 bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.25),_transparent_60%),_#050816] shadow-[0_0_40px_rgba(0,0,0,0.8)];
+  }
+
+  .section-separator {
+    @apply mx-auto h-px w-[min(640px,calc(100%-4rem))] bg-white/20 shadow-[0_0_32px_rgba(34,197,94,0.5)];
   }
 }
