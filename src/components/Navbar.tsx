@@ -7,7 +7,7 @@ const navIcons = [
   (
     <span
       key="work"
-      className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] font-semibold text-emerald-950 shadow-[0_0_16px_rgba(34,197,94,0.9)]"
+      className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] font-semibold text-emerald-950 shadow-[0_0_12px_rgba(34,197,94,0.55)]"
     >
       <svg
         aria-hidden="true"
@@ -21,7 +21,7 @@ const navIcons = [
   (
     <span
       key="catalog"
-      className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] font-semibold text-emerald-950 shadow-[0_0_16px_rgba(34,197,94,0.9)]"
+      className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] font-semibold text-emerald-950 shadow-[0_0_12px_rgba(34,197,94,0.55)]"
     >
       <svg
         aria-hidden="true"
@@ -37,7 +37,7 @@ const navIcons = [
   (
     <span
       key="hire"
-      className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] font-semibold text-emerald-950 shadow-[0_0_16px_rgba(34,197,94,0.9)]"
+      className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] font-semibold text-emerald-950 shadow-[0_0_12px_rgba(34,197,94,0.55)]"
     >
       <svg
         aria-hidden="true"
@@ -60,7 +60,7 @@ export function Navbar() {
         <Link
           key={item.href}
           href={item.href}
-          className="flex items-center gap-2 rounded-full border border-emerald-500/60 bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.5),_transparent_55%),_rgba(15,23,42,0.96)] px-4 py-1.5 text-xs font-medium text-emerald-50 shadow-[0_0_40px_rgba(34,197,94,0.4)] transition-transform duration-150 hover:-translate-y-0.5 md:px-5 md:text-sm"
+          className="flex items-center gap-2 rounded-full border border-emerald-500/40 bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.28),_transparent_55%),_rgba(15,23,42,0.96)] px-4 py-1.5 text-xs font-medium text-emerald-50 shadow-[0_0_22px_rgba(34,197,94,0.32)] transition-transform duration-150 hover:-translate-y-0.5 md:px-5 md:text-sm"
         >
           {navIcons[index]}
           <span className="text-emerald-50/90">{item.label}</span>

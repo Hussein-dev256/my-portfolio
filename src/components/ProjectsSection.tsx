@@ -29,6 +29,7 @@ const projects: Project[] = [
     href: "https://al-birr-website.vercel.app/",
     category: "website",
     previewUrl: "https://al-birr-website.vercel.app/",
+    screenshotSrc: "/al-bir screenshot.svg",
   },
   {
     name: "Pamoja Outreach Foundation",
@@ -40,6 +41,7 @@ const projects: Project[] = [
     href: "https://pamoja-outreach-foundation.netlify.app",
     category: "website",
     previewUrl: "https://pamoja-outreach-foundation.netlify.app",
+    screenshotSrc: "/pamoja screenshot.svg",
   },
   {
     name: "Oakley Store Kampala (PWA)",
@@ -51,6 +53,7 @@ const projects: Project[] = [
     href: "https://github.com/Hussein-dev256/oakley-frontend",
     category: "pwa",
     previewUrl: "https://github.com/Hussein-dev256/oakley-frontend",
+    screenshotSrc: "/Oakley UI.svg",
   },
   {
     name: "Object ID (Android App)",
@@ -63,6 +66,7 @@ const projects: Project[] = [
     category: "app",
     previewUrl:
       "https://github.com/Hussein-dev256/ROI-Based-Image-ID-Android-App",
+    screenshotSrc: "/objectID screenshot.svg",
   },
 ];
 

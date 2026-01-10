@@ -58,22 +58,20 @@ export function WhyMeSection() {
       aria-labelledby="why-heading"
     >
       <div className="section-inner space-y-8">
-        <div className="grid gap-8 md:grid-cols-[1.3fr_minmax(0,1fr)]">
-          <div className="space-y-4">
-            <h2
-              id="why-heading"
-              className="text-lg font-semibold uppercase tracking-[0.25em] text-emerald-300/80"
-            >
-              Why work with me
-            </h2>
-            <p className="text-sm leading-relaxed text-slate-200/85">
-              I combine clear thinking, reliable delivery, and business-focused
-              engineering. I take ownership from understanding your problem, to
-              designing the architecture, to shipping and iterating on
-              production-grade systems.
-            </p>
-          </div>
-          <ul className="space-y-2 text-sm text-slate-100/85">
+        <div className="space-y-4">
+          <h2
+            id="why-heading"
+            className="text-lg font-semibold uppercase tracking-[0.25em] text-emerald-300/80"
+          >
+            Why work with me
+          </h2>
+          <p className="max-w-3xl text-sm leading-relaxed text-slate-200/85">
+            I combine clear thinking, reliable delivery, and business-focused
+            engineering. I take ownership from understanding your problem, to
+            designing the architecture, to shipping and iterating on
+            production-grade systems.
+          </p>
+          <ul className="mt-3 grid gap-2 text-sm text-slate-100/85 sm:grid-cols-2">
             <li className="flex gap-3">
               <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400" />
               <span>Deep problem-solving mindset</span>
@@ -94,17 +92,33 @@ export function WhyMeSection() {
         </div>
 
         <div className="rounded-2xl border border-emerald-500/25 bg-slate-900/50 p-4 shadow-[0_0_24px_rgba(15,23,42,0.9)] md:p-5">
-          <button
-            type="button"
-            onClick={() => setIsCvOpen((prev) => !prev)}
-            className="flex w-full items-center justify-between gap-3 text-sm font-medium text-emerald-100"
-            aria-expanded={isCvOpen}
-          >
-            <span>My CV</span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/60 bg-emerald-500/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-emerald-200">
-              <span>{isCvOpen ? "Hide" : "View"}</span>
-            </span>
-          </button>
+          <div className="flex w-full items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => setIsCvOpen((prev) => !prev)}
+              className="flex flex-1 items-center justify-between gap-3 text-sm font-medium text-emerald-100 text-left"
+              aria-expanded={isCvOpen}
+            >
+              <span>My CV</span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/60 bg-emerald-500/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-emerald-200">
+                <span>{isCvOpen ? "Hide" : "View"}</span>
+              </span>
+            </button>
+            <a
+              href="/Mafabi Hussein.pdf"
+              download="Mafabi_Hussein_CV.pdf"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-emerald-400/50 bg-emerald-500/10 text-emerald-200 shadow-[0_0_14px_rgba(34,197,94,0.35)] transition-colors hover:bg-emerald-500/20 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+              aria-label="Download CV (PDF)"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 20 20"
+                className="h-3.5 w-3.5 fill-current"
+              >
+                <path d="M10 3.5a.75.75 0 0 1 .75.75v6.19l2.22-2.22a.75.75 0 0 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l2.22 2.22V4.25A.75.75 0 0 1 10 3.5Zm-4.5 9.75a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z" />
+              </svg>
+            </a>
+          </div>
 
           <AnimatePresence initial={false}>
             {isCvOpen && (
