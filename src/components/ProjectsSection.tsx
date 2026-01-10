@@ -38,7 +38,7 @@ const projects: Project[] = [
     status: "Live",
     linkLabel: "Visit Website →",
     href: "https://pamoja-outreach-foundation.netlify.app",
-    category: "websites",
+    category: "website",
     previewUrl: "https://pamoja-outreach-foundation.netlify.app",
   },
   {
@@ -180,7 +180,7 @@ export function ProjectsSection() {
                       {project.name}
                     </h3>
                     <span
-                      className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
+                      className={`rounded-full px-2 py-0.5 text-[11px] font-medium whitespace-nowrap ${
                         project.status === "Live"
                           ? "bg-emerald-500/20 text-emerald-200"
                           : "bg-yellow-500/20 text-yellow-100"
