@@ -66,7 +66,7 @@ const projects: Project[] = [
     category: "app",
     previewUrl:
       "https://github.com/Hussein-dev256/ROI-Based-Image-ID-Android-App",
-    screenshotSrc: "/objectID screenshot.svg",
+    screenshotSrc: "/ObjectID screenshot1.svg",
   },
 ];
 
