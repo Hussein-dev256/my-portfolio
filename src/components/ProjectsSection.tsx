@@ -105,7 +105,7 @@ export function ProjectsSection() {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-start gap-2 text-xs md:justify-end md:text-[13px]">
+          <div className="flex flex-wrap justify-center gap-2 text-xs md:justify-center md:text-[13px]">
             {FILTERS.map((filter) => {
               const isActive = activeFilter === filter.id;
               return (
