@@ -103,7 +103,7 @@ export function Hero() {
                 alt={`${tool.label} logo`}
                 width={40}
                 height={40}
-                className="h-10 w-10 opacity-60 grayscale transition-all duration-300 ease-out group-hover:opacity-100 group-hover:grayscale-0"
+                className="h-10 w-10 opacity-100 transition-all duration-300 ease-out md:opacity-60 md:grayscale md:group-hover:opacity-100 md:group-hover:grayscale-0"
               />
             </div>
           ))}
