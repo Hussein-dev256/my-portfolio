@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-type ProjectCategory = "websites" | "pwas" | "apps";
+type ProjectCategory = "website" | "pwa" | "app" | "automation";
 
 type Project = {
   name: string;
@@ -27,7 +27,7 @@ const projects: Project[] = [
     status: "Live",
     linkLabel: "Visit Website →",
     href: "https://al-birr-website.vercel.app/",
-    category: "websites",
+    category: "website",
     previewUrl: "https://al-birr-website.vercel.app/",
   },
   {
@@ -49,7 +49,7 @@ const projects: Project[] = [
     status: "In Progress",
     linkLabel: "GitHub Repo →",
     href: "https://github.com/Hussein-dev256/oakley-frontend",
-    category: "pwas",
+    category: "pwa",
     previewUrl: "https://github.com/Hussein-dev256/oakley-frontend",
   },
   {
@@ -60,7 +60,7 @@ const projects: Project[] = [
     status: "In Progress",
     linkLabel: "GitHub Repo →",
     href: "https://github.com/Hussein-dev256/ROI-Based-Image-ID-Android-App",
-    category: "apps",
+    category: "app",
     previewUrl:
       "https://github.com/Hussein-dev256/ROI-Based-Image-ID-Android-App",
   },
@@ -68,9 +68,9 @@ const projects: Project[] = [
 
 const FILTERS = [
   { id: "all", label: "All" },
-  { id: "websites", label: "Websites" },
-  { id: "pwas", label: "PWAs" },
-  { id: "apps", label: "Apps" },
+  { id: "website", label: "Websites" },
+  { id: "pwa", label: "PWAs" },
+  { id: "app", label: "Apps" },
 ] as const;
 
 type FilterId = (typeof FILTERS)[number]["id"];
