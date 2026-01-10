@@ -1,3 +1,11 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
+type ProjectCategory = "websites" | "pwas" | "apps";
+
 type Project = {
   name: string;
   description: string;
@@ -5,57 +13,76 @@ type Project = {
   status: "Live" | "In Progress";
   linkLabel: string;
   href: string;
+  category: ProjectCategory;
+  previewUrl: string;
+  screenshotSrc?: string;
 };
 
 const projects: Project[] = [
   {
-    name: "FeastFlow",
+    name: "Al-Birr Charity Organization",
     description:
-      "A multi-role food delivery system with real-time order tracking and admin dashboard.",
-    tech: ["Next.js", "Node.js", "PostgreSQL"],
+      "A donation and information website for a charity NGO serving underserved Muslim families in Northern Uganda.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     status: "Live",
-    linkLabel: "Live Project →",
-    href: "https://example.com/feastflow",
+    linkLabel: "Visit Website →",
+    href: "https://al-birr-website.vercel.app/",
+    category: "websites",
+    previewUrl: "https://al-birr-website.vercel.app/",
   },
   {
-    name: "InsightHub Analytics",
+    name: "Pamoja Outreach Foundation",
     description:
-      "A business analytics dashboard for tracking KPIs, reports, and team performance.",
-    tech: ["React", "Python", "FastAPI"],
+      "A storytelling and fundraising site for a charity working with less privileged families in the ghettos of Kampala.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    status: "Live",
+    linkLabel: "Visit Website →",
+    href: "https://pamoja-outreach-foundation.netlify.app",
+    category: "websites",
+    previewUrl: "https://pamoja-outreach-foundation.netlify.app",
+  },
+  {
+    name: "Oakley Store Kampala (PWA)",
+    description:
+      "An ecommerce Progressive Web App with product listings, cart, and checkout designed for a local eyewear store.",
+    tech: ["React", "TypeScript", "PostgreSQL", "Node.js", "Express"],
     status: "In Progress",
     linkLabel: "GitHub Repo →",
-    href: "https://github.com/your-handle/insighthub",
+    href: "https://github.com/Hussein-dev256/oakley-frontend",
+    category: "pwas",
+    previewUrl: "https://github.com/Hussein-dev256/oakley-frontend",
   },
   {
-    name: "SwiftBookings",
+    name: "Object ID (Android App)",
     description:
-      "Booking platform for service-based businesses with calendar integration and automation.",
-    tech: ["Next.js", "MongoDB"],
-    status: "Live",
-    linkLabel: "Live Project →",
-    href: "https://example.com/swiftbookings",
-  },
-  {
-    name: "OpsAutomation Suite",
-    description:
-      "Internal automation suite to streamline repetitive business operations.",
-    tech: ["Node.js", "TypeScript"],
+      "A region-of-interest based image identification app for Android that helps users detect and identify objects.",
+    tech: ["Kotlin", "Android", "Python", "Computer Vision"],
     status: "In Progress",
     linkLabel: "GitHub Repo →",
-    href: "https://github.com/your-handle/ops-automation-suite",
-  },
-  {
-    name: "DevPortfolio System",
-    description:
-      "A portfolio + CMS system for developers to showcase projects and case studies.",
-    tech: ["Next.js", "Tailwind CSS"],
-    status: "Live",
-    linkLabel: "Live Project →",
-    href: "https://example.com/devportfolio",
+    href: "https://github.com/Hussein-dev256/ROI-Based-Image-ID-Android-App",
+    category: "apps",
+    previewUrl:
+      "https://github.com/Hussein-dev256/ROI-Based-Image-ID-Android-App",
   },
 ];
 
+const FILTERS = [
+  { id: "all", label: "All" },
+  { id: "websites", label: "Websites" },
+  { id: "pwas", label: "PWAs" },
+  { id: "apps", label: "Apps" },
+] as const;
+
+type FilterId = (typeof FILTERS)[number]["id"];
+
 export function ProjectsSection() {
+  const [activeFilter, setActiveFilter] = useState<FilterId>("all");
+
+  const visibleProjects =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((project) => project.category === activeFilter);
+
   return (
     <section
       id="work"
@@ -63,7 +90,7 @@ export function ProjectsSection() {
       aria-labelledby="projects-heading"
     >
       <div className="section-inner">
-        <header className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        <header className="mb-6 space-y-4">
           <div>
             <h2
               id="projects-heading"
@@ -73,62 +100,130 @@ export function ProjectsSection() {
             </h2>
             <p className="mt-2 text-sm text-slate-200/80">
               A few examples of systems and products I&apos;ve helped design and
-              build.
+              build. Only personal & public projects are displayed, other
+              projects are private since they belong to clients.
             </p>
+          </div>
+
+          <div className="flex flex-wrap justify-start gap-2 text-xs md:justify-end md:text-[13px]">
+            {FILTERS.map((filter) => {
+              const isActive = activeFilter === filter.id;
+              return (
+                <button
+                  key={filter.id}
+                  type="button"
+                  onClick={() => setActiveFilter(filter.id)}
+                  className={`rounded-full border px-3 py-1 transition-colors duration-150 ${
+                    isActive
+                      ? "border-emerald-400 bg-emerald-500 text-emerald-950 shadow-[0_0_24px_rgba(34,197,94,0.7)]"
+                      : "border-emerald-500/25 bg-slate-900/70 text-slate-200 hover:border-emerald-400/60"
+                  }`}
+                >
+                  {filter.label}
+                </button>
+              );
+            })}
           </div>
         </header>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <article
-              key={project.name}
-              className="card-glow flex flex-col justify-between p-4 text-sm text-slate-100/90"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-sm font-semibold text-emerald-50">
-                    {project.name}
-                  </h3>
-                  <span
-                    className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
-                      project.status === "Live"
-                        ? "bg-emerald-500/20 text-emerald-200"
-                        : "bg-yellow-500/20 text-yellow-100"
-                    }`}
-                  >
-                    {project.status}
+        <AnimatePresence mode="popLayout">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {visibleProjects.map((project) => (
+              <motion.article
+                key={project.name}
+                layout
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="card-glow group relative flex flex-col justify-between overflow-hidden p-4 text-sm text-slate-100/90"
+              >
+                {/* Live preview frame */}
+                <div className="relative mb-4 overflow-hidden rounded-xl border border-slate-700/60 bg-black/60">
+                  <div className="relative h-40 w-full overflow-hidden rounded-[0.9rem] bg-slate-900">
+                    {/* Desktop: scaled iframe preview */}
+                    <div className="hidden h-full w-full md:block">
+                      <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.22]">
+                        <iframe
+                          src={project.previewUrl}
+                          title={`${project.name} live preview`}
+                          loading="lazy"
+                          scrolling="no"
+                          className="pointer-events-none h-[900px] w-[1440px] border-none"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Mobile: static screenshot / placeholder */}
+                    <div className="block h-full w-full md:hidden">
+                      {project.screenshotSrc ? (
+                        <Image
+                          src={project.screenshotSrc}
+                          alt={`${project.name} preview screenshot`}
+                          fill
+                          sizes="100vw"
+                          className="object-cover object-top"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-[10px] text-slate-300">
+                          {project.name}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Text content */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-sm font-semibold text-emerald-50">
+                      {project.name}
+                    </h3>
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
+                        project.status === "Live"
+                          ? "bg-emerald-500/20 text-emerald-200"
+                          : "bg-yellow-500/20 text-yellow-100"
+                      }`}
+                    >
+                      {project.status}
+                    </span>
+                  </div>
+                  <p className="text-[11px] leading-relaxed text-slate-200/85">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="mt-3 flex flex-wrap items-center gap-1.5 text-[10px] text-slate-200/80">
+                  {project.tech.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full bg-emerald-500/15 px-2 py-0.5"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-3 text-[11px] font-medium text-emerald-300">
+                  <span>{project.linkLabel}</span>
+                  <span aria-hidden="true" className="ml-1">
+                    ↗
                   </span>
                 </div>
-                <p className="text-[11px] leading-relaxed text-slate-200/85">
-                  {project.description}
-                </p>
-              </div>
 
-              <div className="mt-4 flex flex-wrap items-center gap-1.5 text-[10px] text-slate-200/80">
-                {project.tech.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full bg-emerald-500/15 px-2 py-0.5"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-4">
+                {/* Clickable overlay for the whole card */}
                 <a
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-[11px] font-medium text-emerald-300 hover:text-emerald-200"
-                >
-                  {project.linkLabel}
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
+                  className="absolute inset-0 z-10"
+                  aria-label={`Open ${project.name} in a new tab`}
+                />
+              </motion.article>
+            ))}
+          </div>
+        </AnimatePresence>
       </div>
     </section>
   );
