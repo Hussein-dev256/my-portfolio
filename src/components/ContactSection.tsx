@@ -198,15 +198,15 @@ export function ContactSection() {
         <div className="mt-16 flex w-full flex-col items-center gap-6">
           <h3 className="text-base font-medium text-emerald-50 md:text-lg">Contact me</h3>
 
-          <div className="inline-flex flex-wrap items-center justify-center gap-6 rounded-2xl border border-emerald-500/70 bg-[#0b0f14]/80 px-4 py-2 sm:gap-7 sm:rounded-3xl sm:px-6 sm:py-3 md:gap-8 md:px-8 md:py-4 lg:gap-9 lg:px-10 lg:py-5">
+          <div className="inline-flex flex-nowrap items-center justify-center gap-2 rounded-2xl border border-emerald-500/70 bg-[#0b0f14]/80 px-2 py-2 sm:gap-4 sm:rounded-3xl sm:px-4 sm:py-3 md:gap-6 md:px-6 md:py-4">
             {/* Gmail -> scroll to contact form */}
             <a
               href="#contact-form"
-              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
               aria-label="Go to contact form"
             >
-              <Image src="/Gmail icon.svg" alt="Gmail icon" width={40} height={40} className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10" />
-              <span className="text-[10px] text-slate-400 sm:text-[11px]">Gmail</span>
+              <Image src="/Gmail icon.svg" alt="Gmail icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
+              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">Gmail</span>
             </a>
 
             {/* WhatsApp */}
@@ -214,11 +214,11 @@ export function ContactSection() {
               href="https://wa.me/256760305803"
               target="_blank"
               rel="noreferrer"
-              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
               aria-label="Chat on WhatsApp"
             >
-              <Image src="/WhatsApp Icon.svg" alt="WhatsApp icon" width={40} height={40} className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10" />
-              <span className="text-[10px] text-slate-400 sm:text-[11px]">WhatsApp</span>
+              <Image src="/WhatsApp Icon.svg" alt="WhatsApp icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
+              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">WhatsApp</span>
             </a>
 
             {/* LinkedIn */}
@@ -226,11 +226,11 @@ export function ContactSection() {
               href="https://www.linkedin.com/in/hussein-hussein-7a8a2436b/"
               target="_blank"
               rel="noreferrer"
-              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
               aria-label="View LinkedIn profile"
             >
-              <Image src="/LinkedIn icon.svg" alt="LinkedIn icon" width={40} height={40} className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10" />
-              <span className="text-[10px] text-slate-400 sm:text-[11px]">LinkedIn</span>
+              <Image src="/LinkedIn icon.svg" alt="LinkedIn icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
+              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">LinkedIn</span>
             </a>
 
             {/* X (Twitter) */}
@@ -238,21 +238,21 @@ export function ContactSection() {
               href="https://x.com/son_of_antonn"
               target="_blank"
               rel="noreferrer"
-              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
               aria-label="View X profile"
             >
-              <Image src="/X icon.svg" alt="X icon" width={40} height={40} className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10" />
-              <span className="text-[10px] text-slate-400 sm:text-[11px]">X</span>
+              <Image src="/X icon.svg" alt="X icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
+              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">X</span>
             </a>
 
             {/* Call */}
             <a
               href="tel:+256760305803"
-              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
               aria-label="Call Hussein"
             >
-              <Image src="/call icon.svg" alt="Phone call icon" width={40} height={40} className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10" />
-              <span className="text-[10px] text-slate-400 sm:text-[11px]">Call</span>
+              <Image src="/call icon.svg" alt="Phone call icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
+              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">Call</span>
             </a>
           </div>
         </div>
