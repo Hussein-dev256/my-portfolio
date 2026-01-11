@@ -145,17 +145,29 @@ export function ProjectsSection() {
                 {/* Live preview frame */}
                 <div className="relative mb-4 overflow-hidden rounded-xl border border-slate-700/60 bg-black/60">
                   <div className="relative h-40 w-full overflow-hidden rounded-[0.9rem] bg-slate-900">
-                    {/* Desktop: scaled iframe preview */}
+                    {/* Desktop: scaled iframe preview, or static screenshot for in-progress projects */}
                     <div className="hidden h-full w-full md:block">
-                      <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.22]">
-                        <iframe
-                          src={project.previewUrl}
-                          title={`${project.name} live preview`}
-                          loading="lazy"
-                          scrolling="no"
-                          className="pointer-events-none h-[900px] w-[1440px] border-none"
-                        />
-                      </div>
+                      {project.status === "In Progress" && project.screenshotSrc ? (
+                        <div className="relative h-full w-full">
+                          <Image
+                            src={project.screenshotSrc}
+                            alt={`${project.name} preview screenshot`}
+                            fill
+                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                            className="object-cover object-top"
+                          />
+                        </div>
+                      ) : (
+                        <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.22]">
+                          <iframe
+                            src={project.previewUrl}
+                            title={`${project.name} live preview`}
+                            loading="lazy"
+                            scrolling="no"
+                            className="pointer-events-none h-[900px] w-[1440px] border-none"
+                          />
+                        </div>
+                      )}
                     </div>
 
                     {/* Mobile: static screenshot if available, otherwise a live iframe preview */}

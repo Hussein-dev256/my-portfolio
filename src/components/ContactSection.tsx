@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { siteConfig } from "@/config/siteConfig";
 
@@ -8,6 +9,10 @@ type Status =
   | { type: "submitting" }
   | { type: "success"; message: string }
   | { type: "error"; message: string };
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
 export function ContactSection() {
   const [status, setStatus] = useState<Status>({ type: "idle" });
@@ -27,6 +32,20 @@ export function ContactSection() {
 
     if (!payload.name || !payload.email || !payload.message) {
       setStatus({ type: "error", message: "Please fill in all required fields." });
+      return;
+    }
+
+    if (!isValidEmail(payload.email)) {
+      setStatus({ type: "error", message: "Please provide a valid email address." });
+      return;
+    }
+
+    if (
+      payload.name.length > 120 ||
+      payload.email.length > 160 ||
+      payload.message.length > 5000
+    ) {
+      setStatus({ type: "error", message: "One or more fields are too long." });
       return;
     }
 
@@ -73,13 +92,13 @@ export function ContactSection() {
       className="section-container"
       aria-labelledby="contact-heading"
     >
-      <div className="section-inner grid gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-        <div>
+      <div className="section-inner flex flex-col items-center gap-10">
+        <div className="w-full max-w-xl text-center">
           <h2
             id="contact-heading"
             className="text-lg font-semibold uppercase tracking-[0.25em] text-emerald-300/80"
           >
-            Contact
+            TALK TO ME
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-slate-200/85">
             Let&apos;s build something meaningful together. Share a bit about your
@@ -88,8 +107,9 @@ export function ContactSection() {
           </p>
 
           <form
+            id="contact-form"
             onSubmit={handleSubmit}
-            className="mt-6 space-y-4 text-sm"
+            className="mt-6 space-y-4 text-sm text-left"
             noValidate
           >
             <div className="grid gap-4 md:grid-cols-2">
@@ -157,11 +177,11 @@ export function ContactSection() {
               <input id="website" name="website" type="text" autoComplete="off" tabIndex={-1} />
             </div>
 
-            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div className="mt-4 flex flex-col items-center gap-2">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="gradient-pill px-8 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-[#02050e] px-8 py-2 text-sm font-medium tracking-wide text-emerald-100 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? "Sending..." : "Send message"}
               </button>
@@ -175,48 +195,66 @@ export function ContactSection() {
           </form>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-6 text-center md:items-start md:text-left">
-          <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-emerald-300/80">
-              Direct links
-            </p>
-            <p className="mt-2 text-sm text-slate-200/85">
-              Prefer to reach out directly? Use any of the channels below. Each
-              icon opens the official account in a new tab.
-            </p>
-          </div>
+        <div className="mt-16 flex w-full flex-col items-center gap-6">
+          <h3 className="text-base font-medium text-emerald-50 md:text-lg">Contact me</h3>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <ContactIcon
-              label="Email"
-              href={`mailto:${siteConfig.emailFallback}`}
-              initials="M"
-            />
-            <ContactIcon
-              label="WhatsApp"
-              href={siteConfig.social.whatsapp}
-              initials="W"
-            />
-            <ContactIcon
-              label="GitHub"
-              href={siteConfig.social.github}
-              initials="G"
-            />
-            <ContactIcon
-              label="LinkedIn"
-              href={siteConfig.social.linkedin}
-              initials="in"
-            />
-            <ContactIcon
-              label="X (Twitter)"
-              href={siteConfig.social.x}
-              initials="X"
-            />
-          </div>
+          <div className="inline-flex items-center gap-10 rounded-3xl border border-emerald-500/70 bg-[#0b0f14]/80 px-10 py-6">
+            {/* Gmail -> scroll to contact form */}
+            <a
+              href="#contact-form"
+              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              aria-label="Go to contact form"
+            >
+              <Image src="/Gmail icon.svg" alt="Gmail icon" width={40} height={40} className="h-10 w-10" />
+              <span className="text-[11px] text-slate-400">Gmail</span>
+            </a>
 
-          <p className="text-[11px] text-slate-400">
-            Let&apos;s build something meaningful together.
-          </p>
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/256760305803"
+              target="_blank"
+              rel="noreferrer"
+              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              aria-label="Chat on WhatsApp"
+            >
+              <Image src="/WhatsApp Icon.svg" alt="WhatsApp icon" width={40} height={40} className="h-10 w-10" />
+              <span className="text-[11px] text-slate-400">WhatsApp</span>
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/hussein-hussein-7a8a2436b/"
+              target="_blank"
+              rel="noreferrer"
+              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              aria-label="View LinkedIn profile"
+            >
+              <Image src="/LinkedIn icon.svg" alt="LinkedIn icon" width={40} height={40} className="h-10 w-10" />
+              <span className="text-[11px] text-slate-400">LinkedIn</span>
+            </a>
+
+            {/* X (Twitter) */}
+            <a
+              href="https://x.com/son_of_antonn"
+              target="_blank"
+              rel="noreferrer"
+              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              aria-label="View X profile"
+            >
+              <Image src="/X icon.svg" alt="X icon" width={40} height={40} className="h-10 w-10" />
+              <span className="text-[11px] text-slate-400">X</span>
+            </a>
+
+            {/* Call */}
+            <a
+              href="tel:+256760305803"
+              className="flex flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300"
+              aria-label="Call Hussein"
+            >
+              <Image src="/call icon.svg" alt="Phone call icon" width={40} height={40} className="h-10 w-10" />
+              <span className="text-[11px] text-slate-400">Call</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

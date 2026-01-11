@@ -85,7 +85,10 @@ export async function POST(req: Request) {
     );
   }
 
-  if (!resend || !process.env.CONTACT_TO_EMAIL || !process.env.CONTACT_FROM_EMAIL) {
+  const toEmail = process.env.CONTACT_TO_EMAIL || "husseintech256@gmail.com";
+  const fromEmail = process.env.CONTACT_FROM_EMAIL;
+
+  if (!resend || !fromEmail) {
     console.error("Contact form misconfigured: missing email environment variables.");
     return NextResponse.json(
       {
@@ -99,8 +102,8 @@ export async function POST(req: Request) {
 
   try {
     await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL!,
-      to: process.env.CONTACT_TO_EMAIL!,
+      from: fromEmail!,
+      to: toEmail,
       replyTo: email,
       subject: `New portfolio inquiry from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || "N/A"}\nIP: ${ip}\n\nMessage:\n${message}`,

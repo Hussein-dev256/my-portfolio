@@ -3,7 +3,7 @@ import { ValueSection } from "@/components/ValueSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { WhyMeSection } from "@/components/WhyMeSection";
-import { CallToActionSection } from "@/components/CallToActionSection";
+import { FaqSection } from "@/components/FaqSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
@@ -26,7 +26,7 @@ export default function Home() {
         <WhyMeSection />
 
         <div className="section-separator" aria-hidden="true" />
-        <CallToActionSection />
+        <FaqSection />
 
         <div className="section-separator" aria-hidden="true" />
         <ContactSection />
