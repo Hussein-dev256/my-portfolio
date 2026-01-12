@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { cookies } from "next/headers";
+import { validatePayload } from "@/lib/validate";
+import { sendContactEmail } from "@/lib/email";
 import { rateLimit } from "@/lib/rateLimit";
 
-const resend = process.env.RESEND_API_KEY
-  ? new Resend(process.env.RESEND_API_KEY)
-  : null;
+const CSRF_COOKIE_NAME = "csrf_token";
+const DEFAULT_RETRY_ATTEMPTS = 2;
+const BASE_RETRY_DELAY_MS = 300;
 
 function getClientIp(req: Request): string {
   const forwarded = req.headers.get("x-forwarded-for");
@@ -15,8 +17,19 @@ function getClientIp(req: Request): string {
   return "unknown";
 }
 
-function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+export async function GET() {
+  const token = crypto.randomUUID();
+  const res = NextResponse.json({ ok: true, csrfToken: token });
+  res.cookies.set({
+    name: CSRF_COOKIE_NAME,
+    value: token,
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: 60 * 60, // 1 hour
+  });
+  return res;
 }
 
 export async function POST(req: Request) {
@@ -49,46 +62,49 @@ export async function POST(req: Request) {
     message,
     company,
     _honeypot,
+    csrf,
   } = (body ?? {}) as {
     name?: string;
     email?: string;
     message?: string;
     company?: string;
     _honeypot?: string;
+    csrf?: string;
   };
 
   if (_honeypot && _honeypot.trim().length > 0) {
     return NextResponse.json({ ok: true, message: "Message received." });
   }
 
-  if (!name || !email || !message) {
+  const allowedOrigin = process.env.CONTACT_ALLOWED_ORIGIN;
+  const origin = req.headers.get("origin");
+  if (allowedOrigin && origin && origin !== allowedOrigin) {
     return NextResponse.json(
-      {
-        ok: false,
-        message: "Please provide your name, email, and a message.",
-      },
-      { status: 400 },
+      { ok: false, message: "Invalid request origin." },
+      { status: 403 },
     );
   }
 
-  if (!isValidEmail(email)) {
+  const csrfCookie = (await cookies()).get(CSRF_COOKIE_NAME)?.value;
+  if (!csrfCookie || !csrf || csrfCookie !== csrf) {
     return NextResponse.json(
-      { ok: false, message: "Please provide a valid email address." },
-      { status: 400 },
+      { ok: false, message: "Invalid CSRF token." },
+      { status: 403 },
     );
   }
 
-  if (name.length > 120 || email.length > 160 || message.length > 5000) {
-    return NextResponse.json(
-      { ok: false, message: "One or more fields are too long." },
-      { status: 400 },
-    );
+  const validationError = validatePayload({
+    name: String(name || ""),
+    email: String(email || ""),
+    message: String(message || ""),
+  });
+  if (validationError) {
+    return NextResponse.json({ ok: false, message: validationError }, { status: 400 });
   }
 
-  const toEmail = process.env.CONTACT_TO_EMAIL || "husseintech256@gmail.com";
-  const fromEmail = process.env.CONTACT_FROM_EMAIL;
+  const apiKeyPresent = !!process.env.RESEND_API_KEY;
 
-  if (!resend || !fromEmail) {
+  if (!apiKeyPresent) {
     console.error("Contact form misconfigured: missing email environment variables.");
     return NextResponse.json(
       {
@@ -101,13 +117,26 @@ export async function POST(req: Request) {
   }
 
   try {
-    await resend.emails.send({
-      from: fromEmail!,
-      to: toEmail,
-      replyTo: email,
-      subject: `New portfolio inquiry from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || "N/A"}\nIP: ${ip}\n\nMessage:\n${message}`,
-    });
+    async function sendWithRetry(attempts: number) {
+      for (let i = 1; i <= attempts; i++) {
+        try {
+          await sendContactEmail({
+            name: name!,
+            email: email!,
+            message: message!,
+            company,
+            ip,
+          });
+          return;
+        } catch (err) {
+          if (i === attempts) throw err;
+          const delay = BASE_RETRY_DELAY_MS * i;
+          await new Promise((r) => setTimeout(r, delay));
+        }
+      }
+    }
+
+    await sendWithRetry(DEFAULT_RETRY_ATTEMPTS);
 
     return NextResponse.json({ ok: true, message: "Message sent successfully." });
   } catch (error) {

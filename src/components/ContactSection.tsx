@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { siteConfig } from "@/config/siteConfig";
 
 type Status =
@@ -16,6 +16,23 @@ function isValidEmail(email: string): boolean {
 
 export function ContactSection() {
   const [status, setStatus] = useState<Status>({ type: "idle" });
+  const [csrfToken, setCsrfToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        const res = await fetch("/api/contact", { method: "GET" });
+        const data = await res.json();
+        if (active && typeof data?.csrfToken === "string") {
+          setCsrfToken(data.csrfToken);
+        }
+      } catch {}
+    })();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,6 +45,7 @@ export function ContactSection() {
       message: String(formData.get("message") || "").trim(),
       company: String(formData.get("company") || "").trim() || undefined,
       _honeypot: String(formData.get("website") || "").trim(),
+      csrf: csrfToken ?? "",
     };
 
     if (!payload.name || !payload.email || !payload.message) {
