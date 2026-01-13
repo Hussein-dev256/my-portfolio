@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import { validatePayload } from "@/lib/validate";
 import { sendContactEmail } from "@/lib/email";
 import { rateLimit } from "@/lib/rateLimit";
@@ -76,12 +75,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, message: "Message received." });
   }
 
-  const csrfCookie = (await cookies()).get(CSRF_COOKIE_NAME)?.value;
-  if (!csrfCookie || !csrf || csrfCookie !== csrf) {
-    return NextResponse.json(
-      { ok: false, message: "Invalid CSRF token." },
-      { status: 403 },
-    );
+  const allowedOriginsEnv = process.env.CONTACT_ALLOWED_ORIGIN;
+  if (allowedOriginsEnv) {
+    const origin = req.headers.get("origin");
+    const allowedOrigins = allowedOriginsEnv.split(",").map((o) => o.trim());
+    if (origin && !allowedOrigins.includes(origin)) {
+      return NextResponse.json(
+        { ok: false, message: "Invalid request origin." },
+        { status: 403 },
+      );
+    }
   }
 
   const validationError = validatePayload({
