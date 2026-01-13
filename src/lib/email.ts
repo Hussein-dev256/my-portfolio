@@ -20,6 +20,8 @@ export async function sendContactEmail(data: EmailData) {
   const backupAddr = process.env.CONTACT_BACKUP_EMAIL;
   const recipients = backupAddr ? [toAddr, backupAddr] : toAddr;
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mhussein.vercel.app";
+
   const html = `
 <!DOCTYPE html>
 <html>
@@ -65,7 +67,7 @@ export async function sendContactEmail(data: EmailData) {
               </div>
               
               <div style="margin-top:32px;padding-top:24px;border-top:1px solid #e5e5e5;color:#999;font-size:14px;">
-                <p style="margin:0;">This message was sent from your portfolio contact form at <a href="${process.env.NEXT_PUBLIC_SITE_URL}" style="color:#0066cc;text-decoration:none;">${process.env.NEXT_PUBLIC_SITE_URL}</a></p>
+                <p style="margin:0;">This message was sent from your portfolio contact form at <a href="${siteUrl}" style="color:#0066cc;text-decoration:none;">${siteUrl}</a></p>
               </div>
             </td>
           </tr>
@@ -80,7 +82,7 @@ export async function sendContactEmail(data: EmailData) {
     from: fromAddr,
     to: recipients,
     replyTo: data.email,
-    subject: `New Contact Form Submission from ${data.name}`,
+    subject: `New Contact Form Submission Message: This message was sent from your portfolio contact form at ${siteUrl}`,
     html,
     text: `New Contact Form Submission
 

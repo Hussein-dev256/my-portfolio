@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import { siteConfig } from "@/config/siteConfig";
+import { validatePayload } from "@/lib/validate";
 
 type Status =
   | { type: "idle" }
@@ -48,8 +49,13 @@ export function ContactSection() {
       csrf: csrfToken ?? "",
     };
 
-    if (!payload.name || !payload.email || !payload.message) {
-      setStatus({ type: "error", message: "Please fill in all required fields." });
+    const validationError = validatePayload({
+      name: payload.name,
+      email: payload.email,
+      message: payload.message,
+    });
+    if (validationError) {
+      setStatus({ type: "error", message: validationError });
       return;
     }
 

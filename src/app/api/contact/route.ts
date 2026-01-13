@@ -76,15 +76,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, message: "Message received." });
   }
 
-  const allowedOrigin = process.env.CONTACT_ALLOWED_ORIGIN;
-  const origin = req.headers.get("origin");
-  if (allowedOrigin && origin && origin !== allowedOrigin) {
-    return NextResponse.json(
-      { ok: false, message: "Invalid request origin." },
-      { status: 403 },
-    );
-  }
-
   const csrfCookie = (await cookies()).get(CSRF_COOKIE_NAME)?.value;
   if (!csrfCookie || !csrf || csrfCookie !== csrf) {
     return NextResponse.json(
