@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Mafabi Hussein | Software Engineer & Digital Solutions Builder",
   description:
     "Portfolio of Mafabi Hussein, a software engineer building reliable, scalable digital solutions: websites, apps, automations, and software systems.",
-  metadataBase: new URL("https://localhost"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://mhussein.vercel.app"),
   openGraph: {
     title: "Mafabi Hussein | Software Engineer & Digital Solutions Builder",
     description:
@@ -29,27 +29,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? (
+        <head>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+            strategy="beforeInteractive"
+          />
+          <Script id="ga4-init" strategy="beforeInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
+                cookie_domain: location.hostname,
+                cookie_flags: 'SameSite=None;Secure',
+                send_page_view: true
+              });
+            `}
+          </Script>
+        </head>
+      ) : (
+        <head />
+      )}
       <body
         className={`${poppins.variable} bg-background text-foreground antialiased`}
       >
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
-                  anonymize_ip: true,
-                });
-              `}
-            </Script>
-          </>
-        ) : null}
         {children}
       </body>
     </html>
