@@ -186,7 +186,7 @@ export function WhyMeSection() {
                           Programming &amp; Frameworks:
                         </span>{" "}
                         HTML, CSS, JavaScript, TypeScript, React, Next.js, Node.js,
-                        NestJS, Express.js, FastAPI, Python, C++, Kotlin (Android)
+                        NestJS, Express.js, Python, FastAPI
                       </p>
                       <p>
                         <span className="font-semibold text-emerald-100">
@@ -205,7 +205,7 @@ export function WhyMeSection() {
                         <span className="font-semibold text-emerald-100">
                           Specialized Experience:
                         </span>{" "}
-                        Image processing (C++), AI-powered image recognition,
+                        Image processing (C++), Kotlin (Android), AI-powered image recognition,
                         on-device inference systems
                       </p>
                     </div>
@@ -281,6 +281,9 @@ export function WhyMeSection() {
                           Oakley Store – Full Ecommerce PWA
                         </p>
                         <p>
+                          Multi-role e-commerce platform with client PWA, vendor PWA &
+                          a single backend.
+                          <br />
                           Complete online shopping system with product listings, cart,
                           and checkout, including separate vendor and client PWAs with
                           role-based functionality.
@@ -288,12 +291,18 @@ export function WhyMeSection() {
                       </li>
                       <li>
                         <p className="font-semibold text-emerald-100">
-                          Visual AI API – Open-Source Image Identification API
+                          Visual AI – Open-Source Image Identification system
                         </p>
                         <p>
-                          AI-powered image recognition system capable of on-device
+                          An AI powered system that identifies items from images using
+                          Mobile Net V3 TF-lite image classification model locally on
+                          device.
+                          <br />
+                          This image recognition system capable of on-device
                           inference, designed for performance, efficiency, and
-                          offline-friendly usage.
+                          offline-friendly usage was developed as a research project
+                          into on-device inference and has been made an open source
+                          project with future iterations.
                         </p>
                       </li>
                       <li>
