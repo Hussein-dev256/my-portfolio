@@ -105,7 +105,7 @@ export function WhyMeSection() {
               </span>
             </button>
             <a
-              href="/Mafabi Hussein.pdf"
+              href="/my_CV.pdf"
               download="Mafabi_Hussein_CV.pdf"
               className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-emerald-400/50 bg-emerald-500/10 text-emerald-200 shadow-[0_0_14px_rgba(34,197,94,0.35)] transition-colors hover:bg-emerald-500/20 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
               aria-label="Download CV (PDF)"
@@ -370,7 +370,7 @@ export function WhyMeSection() {
 
                   <div className="pt-2">
                     <a
-                      href="/Mafabi Hussein.pdf"
+                      href="/my_CV.pdf"
                       download="Mafabi_Hussein_CV.pdf"
                       className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-2 text-xs font-semibold text-emerald-950 shadow-[0_0_24px_rgba(34,197,94,0.6)] transition-colors hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
                     >

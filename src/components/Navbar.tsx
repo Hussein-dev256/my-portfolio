@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { MouseEvent } from "react";
 import { siteConfig } from "@/config/siteConfig";
 
 const navIcons = [
@@ -51,6 +52,16 @@ const navIcons = [
 ];
 
 export function Navbar() {
+  function handleClick(href: string, event: MouseEvent<HTMLAnchorElement>) {
+    if (!href.startsWith("#")) return;
+    event.preventDefault();
+    const id = href.slice(1);
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
   return (
     <nav
       aria-label="Primary actions"
@@ -60,6 +71,7 @@ export function Navbar() {
         <Link
           key={item.href}
           href={item.href}
+          onClick={(event) => handleClick(item.href, event)}
           className="flex items-center gap-2 rounded-full border border-emerald-500/40 bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.28),_transparent_55%),_rgba(15,23,42,0.96)] px-4 py-1.5 text-xs font-medium text-emerald-50 shadow-[0_0_22px_rgba(34,197,94,0.32)] transition-transform duration-150 hover:-translate-y-0.5 md:px-5 md:text-sm"
         >
           {navIcons[index]}
