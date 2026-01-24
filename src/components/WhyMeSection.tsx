@@ -136,7 +136,7 @@ export function WhyMeSection() {
                         Mafabi Hussein
                       </p>
                       <p className="text-xs uppercase tracking-[0.2em] text-emerald-300/80">
-                        Software Engineer
+                        Backend-Focused Full Stack Software Engineer
                       </p>
                     </div>
                     <div className="space-y-1 text-xs text-slate-300 md:text-right">
@@ -148,7 +148,7 @@ export function WhyMeSection() {
                           husseintech256@gmail.com
                         </a>
                       </p>
-                      <p>Phone: +256 760 305 803</p>
+                      <p>Contact: +256 760 305 803</p>
                       <p>
                         <a
                           href="https://github.com/Hussein-dev256"
@@ -159,6 +159,16 @@ export function WhyMeSection() {
                           github.com/Hussein-dev256
                         </a>
                       </p>
+                      <p>
+                        <a
+                          href="https://www.linkedin.com/in/mafabi-hussein-7a8a2436b"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="hover:text-emerald-300"
+                        >
+                          linkedin.com/in/mafabi-hussein-7a8a2436b
+                        </a>
+                      </p>
                     </div>
                   </div>
 
@@ -167,12 +177,18 @@ export function WhyMeSection() {
                       Professional summary
                     </p>
                     <p className="text-sm leading-relaxed text-slate-200/90">
-                      Results-driven Software Engineer with 3 years of experience
-                      designing and building reliable, scalable, and user-focused
-                      digital systems. Strong background in full-stack web
-                      development, backend architecture, and mobile applications,
-                      with hands-on experience across modern JavaScript ecosystems,
-                      databases, and AI-powered solutions.
+                      Backend-focused Full Stack Software Engineer with hands-on
+                      experience designing, building, and deploying web and
+                      mobile applications through freelance work and academic
+                      projects. Strong foundation in backend development,
+                      RESTful API design, and relational database modeling using
+                      JavaScript, TypeScript, and Python. Comfortable working
+                      across the full development lifecycle from requirements
+                      gathering and system design to implementation, testing,
+                      and deployment. Experienced with applied image
+                      recognition concepts, mobile performance constraints, and
+                      data-driven systems. Highly adaptable, self-driven, and
+                      committed to continuous improvement as an engineer.
                     </p>
                   </div>
 
@@ -180,34 +196,64 @@ export function WhyMeSection() {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-300/80">
                       Technical skills
                     </p>
-                    <div className="space-y-1 text-sm leading-relaxed text-slate-200/90">
-                      <p>
-                        <span className="font-semibold text-emerald-100">
-                          Programming &amp; Frameworks:
-                        </span>{" "}
-                        HTML, CSS, JavaScript, TypeScript, React, Next.js, Node.js,
-                        NestJS, Express.js, Python, FastAPI
-                      </p>
-                      <p>
-                        <span className="font-semibold text-emerald-100">
-                          Databases &amp; Backend:
-                        </span>{" "}
-                        PostgreSQL, Supabase, REST APIs, RDBMS principles
-                      </p>
-                      <p>
-                        <span className="font-semibold text-emerald-100">
-                          Tools &amp; Engineering Practices:
-                        </span>{" "}
-                        Git &amp; GitHub, version control, basic DevOps, API design,
-                        system architecture
-                      </p>
-                      <p>
-                        <span className="font-semibold text-emerald-100">
-                          Specialized Experience:
-                        </span>{" "}
-                        Image processing (C++), Kotlin (Android), AI-powered image recognition,
-                        on-device inference systems
-                      </p>
+                    <div className="space-y-2 text-sm leading-relaxed text-slate-200/90">
+                      <div>
+                        <p className="font-semibold text-emerald-100">
+                          Backend Development
+                        </p>
+                        <p>
+                          Node.js, NestJS, Express.js, FastAPI, Django,
+                          JavaScript, TypeScript, Python
+                        </p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>API development, request validation, authentication, authorization</li>
+                          <li>Modular backend structure and maintainable code practices</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-emerald-100">
+                          Databases &amp; APIs
+                        </p>
+                        <p>PostgreSQL, Supabase, SQL, RESTful API design</p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>Relational database modeling and schema design</li>
+                          <li>Data integrity, query optimization basics, CRUD operations</li>
+                          <li>Performance optimization</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-emerald-100">
+                          Frontend
+                        </p>
+                        <p>React, Next.js, HTML, CSS</p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>Building responsive UIs and handling client-side state</li>
+                          <li>Integrating frontend apps with third-party and custom APIs</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-emerald-100">
+                          Tools &amp; Engineering Practices
+                        </p>
+                        <p>
+                          Git, GitHub, version control workflows, basic
+                          deployment practices
+                        </p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>Feature branching, issue tracking, and collaborative development</li>
+                          <li>Introductory system design and backend architecture concepts</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-emerald-100">
+                          Applied Image Recognition (Project-Based)
+                        </p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>Image annotation workflows and region-of-interest (ROI) processing</li>
+                          <li>Mobile image handling and performance-aware processing</li>
+                          <li>Introductory on-device inference concepts and constraints</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
 
@@ -222,40 +268,59 @@ export function WhyMeSection() {
                       <p className="text-xs text-slate-400">2022 – Present</p>
                       <ul className="mt-1 list-disc space-y-1 pl-5">
                         <li>
-                          Design and develop full-stack web and mobile applications for
-                          businesses, organizations, and individuals.
+                          Designed, developed, and maintained web and mobile
+                          applications for small businesses, academic use
+                          cases, and individual clients.
                         </li>
                         <li>
-                          Build scalable backend systems using Node.js, NestJS,
-                          PostgreSQL, and Supabase.
+                          Built backend services using Node.js, NestJS,
+                          PostgreSQL, and Supabase with a focus on clean API
+                          structure and data consistency.
                         </li>
                         <li>
-                          Deliver production-ready solutions including ecommerce
-                          platforms, APIs, automation systems, and PWAs.
+                          Designed RESTful APIs implementing authentication,
+                          role-based access control, and request validation.
                         </li>
                         <li>
-                          Work closely with clients to understand requirements, propose
-                          solutions, and deliver measurable business value.
+                          Worked on full application flows including user
+                          onboarding, data persistence, and backend-driven
+                          business logic.
+                        </li>
+                        <li>
+                          Collaborated closely with clients to gather
+                          requirements, clarify expectations, and iteratively
+                          deliver functional solutions.
+                        </li>
+                        <li>
+                          Managed projects end-to-end, including system design,
+                          development, testing, deployment, and post-delivery
+                          fixes.
                         </li>
                       </ul>
                     </div>
                     <div className="space-y-1 text-sm leading-relaxed text-slate-200/90">
-                      <p className="font-semibold text-emerald-100">Data Annotator</p>
+                      <p className="font-semibold text-emerald-100">
+                        Data Annotator
+                      </p>
                       <p className="text-xs text-slate-400">
-                        Samasource Uganda Ltd, Gulu · July 2021 – November 2021
+                        Samasource Uganda Ltd – Gulu · July 2021 – November 2021
                       </p>
                       <ul className="mt-1 list-disc space-y-1 pl-5">
                         <li>
-                          Performed data annotation and cleaning for machine learning
-                          and AI model training.
+                          Annotated, reviewed, and cleaned datasets used for
+                          computer vision and machine learning models.
                         </li>
                         <li>
-                          Ensured high data quality and accuracy for computer vision
-                          datasets.
+                          Followed structured annotation guidelines and quality
+                          assurance processes to maintain high data accuracy.
                         </li>
                         <li>
-                          Gained practical exposure to real-world AI workflows and
-                          data pipelines.
+                          Worked within established data pipelines, gaining
+                          exposure to production-level AI workflows.
+                        </li>
+                        <li>
+                          Developed attention to detail and consistency critical
+                          for data-driven systems.
                         </li>
                       </ul>
                     </div>
@@ -263,56 +328,98 @@ export function WhyMeSection() {
 
                   <div className="space-y-2">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-300/80">
-                      Key projects
+                      Projects
                     </p>
                     <ul className="space-y-2 text-sm leading-relaxed text-slate-200/90">
                       <li>
                         <p className="font-semibold text-emerald-100">
-                          ObjectID – Android Mobile Application
+                          ObjectID – Android Image Identification Application
                         </p>
-                        <p>
-                          Image identification app using Region of Interest (ROI)
-                          processing, built for efficient inference and optimized
-                          performance on mobile devices.
-                        </p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>
+                            Developed an Android application that allows users
+                            to capture or upload images for object
+                            identification.
+                          </li>
+                          <li>
+                            Implemented region-of-interest (ROI) annotation to
+                            isolate specific objects within an image.
+                          </li>
+                          <li>
+                            Focused on efficient image handling and performance
+                            optimization for low-end mobile devices.
+                          </li>
+                          <li>
+                            Gained practical experience with mobile constraints,
+                            image processing workflows, and API integration.
+                          </li>
+                        </ul>
                       </li>
                       <li>
                         <p className="font-semibold text-emerald-100">
-                          Oakley Store – Full Ecommerce PWA
+                          Oakley Store – Ecommerce Progressive Web Application
+                          (PWA)
                         </p>
-                        <p>
-                          Multi-role e-commerce platform with client PWA, vendor PWA &
-                          a single backend.
-                          <br />
-                          Complete online shopping system with product listings, cart,
-                          and checkout, including separate vendor and client PWAs with
-                          role-based functionality.
-                        </p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>
+                            Built a full-featured ecommerce platform with
+                            product catalog, shopping cart, and checkout
+                            workflows.
+                          </li>
+                          <li>
+                            Implemented role-based access control supporting
+                            vendor and customer roles across separate
+                            interfaces.
+                          </li>
+                          <li>
+                            Integrated backend APIs with a relational database
+                            to manage products, orders, and user data.
+                          </li>
+                          <li>
+                            Focused on reliability, usability, and maintainable
+                            application structure.
+                          </li>
+                        </ul>
                       </li>
                       <li>
                         <p className="font-semibold text-emerald-100">
-                          Visual AI – Open-Source Image Identification system
+                          Visual AI – Image Recognition Backend System
                         </p>
-                        <p>
-                          An AI powered system that identifies items from images using
-                          Mobile Net V3 TF-lite image classification model locally on
-                          device.
-                          <br />
-                          This image recognition system capable of on-device
-                          inference, designed for performance, efficiency, and
-                          offline-friendly usage was developed as a research project
-                          into on-device inference and has been made an open source
-                          project with future iterations.
-                        </p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>
+                            Designed and implemented a backend API for image
+                            recognition using a Mobile Net V3 TF-lite model as
+                            a personal project.
+                          </li>
+                          <li>
+                            Focused on efficient image handling, performance
+                            considerations, and offline-friendly concepts.
+                          </li>
+                          <li>
+                            Documented design decisions and released the project
+                            as open source to demonstrate learning progress.
+                          </li>
+                        </ul>
                       </li>
                       <li>
                         <p className="font-semibold text-emerald-100">
-                          Websites for organizations &amp; personal brands
+                          Professional Websites
                         </p>
-                        <p>
-                          Designed and deployed multiple professional websites with
-                          modern UI, responsive layouts, and optimized performance.
-                        </p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>
+                            Designed and deployed responsive websites for
+                            businesses, organizations, and personal brands.
+                          </li>
+                          <li>
+                            Applied frontend best practices including
+                            performance optimization, accessibility, and
+                            SEO-friendly structure.
+                          </li>
+                          <li>
+                            Delivered complete solutions from layout design to
+                            deployment.
+                          </li>
+                        </ul>
                       </li>
                     </ul>
                   </div>
@@ -346,8 +453,12 @@ export function WhyMeSection() {
                     </p>
                     <ul className="list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-200/90">
                       <li>
-                        Certificate in Database Management Systems – Great Learning
-                        Schools (Online)
+                        Certificate in Database Management Systems – Great
+                        Learning Academy (Online)
+                      </li>
+                      <li>
+                        Certificate in Data Science Foundations – Great
+                        Learning Academy (Online)
                       </li>
                     </ul>
                   </div>
@@ -357,13 +468,19 @@ export function WhyMeSection() {
                       Soft skills
                     </p>
                     <ul className="list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-200/90">
-                      <li>Critical thinking &amp; analytical problem solving</li>
-                      <li>Clear and professional communication</li>
-                      <li>AI-assisted development &amp; productivity optimization</li>
-                      <li>Strong ownership &amp; accountability</li>
+                      <li>Strong problem-solving and analytical thinking</li>
                       <li>
-                        Ability to translate business needs into technical solutions
+                        Clear communication with both technical and
+                        non-technical stakeholders
                       </li>
+                      <li>
+                        Ownership, accountability, and reliability in task
+                        execution
+                      </li>
+                      <li>
+                        Adaptability and commitment to continuous learning
+                      </li>
+                      <li>Teamwork and collaboration</li>
                     </ul>
                   </div>
 
@@ -372,8 +489,8 @@ export function WhyMeSection() {
                       Availability
                     </p>
                     <p className="text-sm leading-relaxed text-slate-200/90">
-                      Open to freelance work, contract opportunities, and long-term
-                      collaborations.
+                      Open to freelance, contract, and full-time software
+                      engineering opportunities.
                     </p>
                   </div>
 

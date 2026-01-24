@@ -10,12 +10,13 @@ type Project = {
   name: string;
   description: string;
   tech: string[];
-  status: "Live" | "In Progress";
+  status: "Live" | "In Progress" | "Web-demo";
   linkLabel: string;
   href: string;
   category: ProjectCategory;
   previewUrl: string;
   screenshotSrc?: string;
+  useScreenshotFallback?: boolean;
 };
 
 const projects: Project[] = [
@@ -60,13 +61,14 @@ const projects: Project[] = [
     description:
       "A region-of-interest based image identification app for Android that helps users detect and identify objects.",
     tech: ["Kotlin", "Android", "Python", "Computer Vision"],
-    status: "In Progress",
-    linkLabel: "GitHub Repo →",
-    href: "https://github.com/Hussein-dev256/ROI-Based-Image-ID-Android-App",
+    status: "Web-demo",
+    linkLabel: "Open Web Demo →",
+    href: "https://objectid-demo-frontend.vercel.app",
     category: "app",
     previewUrl:
-      "https://github.com/Hussein-dev256/ROI-Based-Image-ID-Android-App",
+      "https://objectid-demo-frontend.vercel.app",
     screenshotSrc: "/ObjectID screenshot1.svg",
+    useScreenshotFallback: true,
   },
 ];
 
@@ -81,6 +83,9 @@ type FilterId = (typeof FILTERS)[number]["id"];
 
 export function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState<FilterId>("all");
+  const [failedPreviews, setFailedPreviews] = useState<Record<string, boolean>>(
+    {},
+  );
 
   const visibleProjects =
     activeFilter === "all"
@@ -132,116 +137,134 @@ export function ProjectsSection() {
 
         <AnimatePresence mode="popLayout">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {visibleProjects.map((project) => (
-              <motion.article
-                key={project.name}
-                layout
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="card-glow group relative flex flex-col justify-between overflow-hidden p-4 text-sm text-slate-100/90"
-              >
-                {/* Live preview frame */}
-                <div className="relative mb-4 overflow-hidden rounded-xl border border-slate-700/60 bg-black/60">
-                  <div className="relative h-40 w-full overflow-hidden rounded-[0.9rem] bg-slate-900">
-                    {/* Desktop: scaled iframe preview, or static screenshot for in-progress projects */}
-                    <div className="hidden h-full w-full md:block">
-                      {project.status === "In Progress" && project.screenshotSrc ? (
-                        <div className="relative h-full w-full">
+            {visibleProjects.map((project) => {
+              const hasPreviewError = failedPreviews[project.name];
+              const shouldShowDesktopScreenshot =
+                (project.status === "In Progress" &&
+                  !project.useScreenshotFallback &&
+                  !!project.screenshotSrc) ||
+                (project.useScreenshotFallback &&
+                  !!project.screenshotSrc &&
+                  hasPreviewError);
+
+              return (
+                <motion.article
+                  key={project.name}
+                  layout
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="card-glow group relative flex flex-col justify-between overflow-hidden p-4 text-sm text-slate-100/90"
+                >
+                  <div className="relative mb-4 overflow-hidden rounded-xl border border-slate-700/60 bg-black/60">
+                    <div className="relative h-40 w-full overflow-hidden rounded-[0.9rem] bg-slate-900">
+                      <div className="hidden h-full w-full md:block">
+                        {shouldShowDesktopScreenshot ? (
+                          <div className="relative h-full w-full">
+                            <Image
+                              src={project.screenshotSrc as string}
+                              alt={`${project.name} preview screenshot`}
+                              fill
+                              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                              className="object-cover object-top"
+                            />
+                          </div>
+                        ) : (
+                          <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.22]">
+                            <iframe
+                              src={project.previewUrl}
+                              title={`${project.name} live preview`}
+                              loading="lazy"
+                              scrolling="no"
+                              className="pointer-events-none h-[900px] w-[1440px] border-none"
+                              onError={() => {
+                                if (
+                                  project.useScreenshotFallback &&
+                                  project.screenshotSrc
+                                ) {
+                                  setFailedPreviews((prev) => ({
+                                    ...prev,
+                                    [project.name]: true,
+                                  }));
+                                }
+                              }}
+                            />
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="block h-full w-full md:hidden">
+                        {project.screenshotSrc ? (
                           <Image
                             src={project.screenshotSrc}
                             alt={`${project.name} preview screenshot`}
                             fill
-                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                            sizes="100vw"
                             className="object-cover object-top"
                           />
-                        </div>
-                      ) : (
-                        <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.22]">
+                        ) : (
                           <iframe
                             src={project.previewUrl}
                             title={`${project.name} live preview`}
                             loading="lazy"
                             scrolling="no"
-                            className="pointer-events-none h-[900px] w-[1440px] border-none"
+                            className="pointer-events-none h-full w-full border-none"
                           />
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Mobile: static screenshot if available, otherwise a live iframe preview */}
-                    <div className="block h-full w-full md:hidden">
-                      {project.screenshotSrc ? (
-                        <Image
-                          src={project.screenshotSrc}
-                          alt={`${project.name} preview screenshot`}
-                          fill
-                          sizes="100vw"
-                          className="object-cover object-top"
-                        />
-                      ) : (
-                        <iframe
-                          src={project.previewUrl}
-                          title={`${project.name} live preview`}
-                          loading="lazy"
-                          scrolling="no"
-                          className="pointer-events-none h-full w-full border-none"
-                        />
-                      )}
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Text content */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-sm font-semibold text-emerald-50">
-                      {project.name}
-                    </h3>
-                    <span
-                      className={`rounded-full px-2 py-0.5 text-[11px] font-medium whitespace-nowrap ${
-                        project.status === "Live"
-                          ? "bg-emerald-500/20 text-emerald-200"
-                          : "bg-yellow-500/20 text-yellow-100"
-                      }`}
-                    >
-                      {project.status}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="text-sm font-semibold text-emerald-50">
+                        {project.name}
+                      </h3>
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-[11px] font-medium whitespace-nowrap ${
+                          project.status === "Live" ||
+                          project.status === "Web-demo"
+                            ? "bg-emerald-500/20 text-emerald-200"
+                            : "bg-yellow-500/20 text-yellow-100"
+                        }`}
+                      >
+                        {project.status}
+                      </span>
+                    </div>
+                    <p className="text-[11px] leading-relaxed text-slate-200/85">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-3 flex flex-wrap items-center gap-1.5 text-[10px] text-slate-200/80">
+                    {project.tech.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full bg-emerald-500/15 px-2 py-0.5"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-3 text-[11px] font-medium text-emerald-300">
+                    <span>{project.linkLabel}</span>
+                    <span aria-hidden="true" className="ml-1">
+                      ↗
                     </span>
                   </div>
-                  <p className="text-[11px] leading-relaxed text-slate-200/85">
-                    {project.description}
-                  </p>
-                </div>
 
-                <div className="mt-3 flex flex-wrap items-center gap-1.5 text-[10px] text-slate-200/80">
-                  {project.tech.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full bg-emerald-500/15 px-2 py-0.5"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-3 text-[11px] font-medium text-emerald-300">
-                  <span>{project.linkLabel}</span>
-                  <span aria-hidden="true" className="ml-1">
-                    ↗
-                  </span>
-                </div>
-
-                {/* Clickable overlay for the whole card */}
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="absolute inset-0 z-10"
-                  aria-label={`Open ${project.name} in a new tab`}
-                />
-              </motion.article>
-            ))}
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="absolute inset-0 z-10"
+                    aria-label={`Open ${project.name} in a new tab`}
+                  />
+                </motion.article>
+              );
+            })}
           </div>
         </AnimatePresence>
       </div>
