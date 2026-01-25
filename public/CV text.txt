@@ -1,0 +1,93 @@
+MAFABI HUSSEIN 
+JavaScript Software Engineer (Backend-Focused, Full-Lifecycle Web Systems) 
+📧 husseintech256@gmail.com 
+📞 +256 760 305 803 
+🌐 GitHub: github.com/Hussein-dev256 
+🔗 LinkedIn: linkedin.com/in/mafabi-hussein-7a8a2436b 
+  
+PROFESSIONAL SUMMARY 
+I am a JavaScript Software Engineer with strong experience across the JavaScript and TypeScript ecosystem, building reliable, production-grade web systems and apps. My work covers backend service development and API design with Node.js, Express and NestJS, as well as frontend engineering with React and Next.js, where I focus on building data-driven, maintainable user interfaces. I am comfortable owning features across the full application lifecycle, from requirement gathering through design and implementation to deployment, while keeping systems clean, wellstructured, and easy to evolve. In parallel, I actively use and deepening my Python skills for backend and data-oriented applications. 
+  
+CORE TECHNICAL EXPERTISE 
+The tools and technologies below reflect how I work in practice, with JavaScript as my primary engineering language and Python as a growing secondary focus. 
+Primary Language 
+JavaScript / TypeScript 
+Deep hands-on experience building client and server-side systems, asynchronous workflows, APIdriven architectures, and maintainable application code. 
+JavaScript Ecosystem 
+	• 	Frontend Engineering: React, Next.js 
+Building responsive, state-driven interfaces and integrating frontend applications with backend APIs. 
+	• 	Backend Engineering: Node.js, Express.js, NestJS 
+Designing RESTful APIs, authentication and authorization flows, request validation, and modular service architectures. 
+Databases & Data 
+	• 	PostgreSQL, Supabase, SQL 
+Relational schema design, data modeling, CRUD operations, and basic query optimization. 
+Secondary Language 
+Python 
+	• 	FastAPI, Django 
+Used for backend services and data-driven applications; actively deepening proficiency. 
+ 
+Web Foundations 
+	• 	HTML, CSS 
+Strong grasp of layout, responsiveness, accessibility, and standards-compliant markup. 
+Tools & Engineering Practices 
+•	Git, GitHub, version control workflows 
+•	Feature branching, issue tracking, basic deployment practices 
+•	Introductory system design and backend architecture concepts 
+  
+PROFESSIONAL EXPERIENCE 
+Freelance Software Engineer 
+2022	– Present 
+•	Designed and delivered production-ready web and mobile applications using a JavaScriptfirst approach. 
+•	Built backend services with Node.js, NestJS, PostgreSQL and Supabase, prioritizing clear API design, data integrity and long-term maintainability. 
+•	Took ownership of features end to end, from backend logic and API contracts to frontend integration and final delivery. 
+•	Implemented authentication, role-based access control and backend-driven business logic aligned with real client requirements. 
+•	Worked closely with clients to understand problems, clarify scope and iteratively deliver practical solutions. 
+•	Managed projects through the full development lifecycle, including requirement gathering, system design, development, testing, deployment and post-release support. 
+Data Annotator 
+Samasource Uganda Ltd – Gulu July 2021 – November 2021 
+•	Annotated and reviewed datasets for computer vision and machine learning workflows. 
+•	Followed strict quality assurance guidelines to ensure data accuracy and consistency. 
+•	Gained exposure to production-level AI data pipelines and model support processes. 
+•	Developed strong attention to detail and process discipline relevant to data-driven systems. 
+  
+SELECTED PROJECTS 
+ObjectID – Android Image Identification Application 
+•	Developed an Android application enabling users to capture or upload images for object identification. 
+•	Implemented region-of-interest (ROI) annotation to isolate specific objects within images. 
+•	Focused on efficient image handling and performance optimization for low-end mobile devices. 
+•	Gained practical experience with mobile constraints, image processing workflows, and API integration. 
+Oakley Store – Ecommerce Progressive Web Application (PWA) 
+•	Designed backend services and implemented frontend interfaces for a multi-role ecommerce platform. 
+•	Built APIs to manage products, orders, users, and role-based access control. 
+•	Integrated relational databases to ensure data integrity and reliable transaction handling. 
+•	Delivered a maintainable, scalable application structure with a focus on usability and reliability. 
+Visual AI – Image Recognition Backend System 
+•	Designed and implemented a backend API using Fast API for image recognition using a MobileNetV3 TensorFlow Lite model. 
+•	Focused on efficient image handling, performance considerations, and offline-friendly concepts. 
+•	Documented architectural decisions and released the project as open source to demonstrate learning progression. 
+Professional Websites 
+•	Designed and deployed responsive websites for businesses, organizations, and personal brands. 
+•	Implemented frontend best practices including performance optimization, accessibility, and SEO-friendly structure. 
+•	Delivered complete solutions from layout implementation to deployment. 
+  
+EDUCATION 
+Bachelor of Science in Computer Science 
+Kampala International University 
+2022 – 2025 
+Higher Education Access Certificate (Mathematics & Chemistry) 
+Gulu University 2020 – 2021 
+  
+CERTIFICATIONS 
+•	Certificate in Database Management Systems – Great Learning Academy 
+•	Certificate in Data Science Foundations – Great Learning Academy 
+  
+SOFT SKILLS 
+•	Strong analytical thinking and problem-solving 
+•	Clear communication with technical and non-technical stakeholders 
+•	Ownership and accountability in task execution 
+•	Adaptability and commitment to continuous learning 
+•	Effective collaboration in team environments 
+  
+AVAILABILITY 
+Open to freelance, contract and full-time JavaScript software engineering opportunities. 
+ 

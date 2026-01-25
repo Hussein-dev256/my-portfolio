@@ -105,7 +105,7 @@ export function WhyMeSection() {
               </span>
             </button>
             <a
-              href="/my_CV.pdf"
+              href="/Mafabi_Hussein_CV.pdf"
               download="Mafabi_Hussein_CV.pdf"
               className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-emerald-400/50 bg-emerald-500/10 text-emerald-200 shadow-[0_0_14px_rgba(34,197,94,0.35)] transition-colors hover:bg-emerald-500/20 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
               aria-label="Download CV (PDF)"
@@ -136,7 +136,7 @@ export function WhyMeSection() {
                         Mafabi Hussein
                       </p>
                       <p className="text-xs uppercase tracking-[0.2em] text-emerald-300/80">
-                        Backend-Focused Full Stack Software Engineer
+                        JavaScript Software Engineer (Backend Focused)
                       </p>
                     </div>
                     <div className="space-y-1 text-xs text-slate-300 md:text-right">
@@ -177,81 +177,113 @@ export function WhyMeSection() {
                       Professional summary
                     </p>
                     <p className="text-sm leading-relaxed text-slate-200/90">
-                      Backend-focused Full Stack Software Engineer with hands-on
-                      experience designing, building, and deploying web and
-                      mobile applications through freelance work and academic
-                      projects. Strong foundation in backend development,
-                      RESTful API design, and relational database modeling using
-                      JavaScript, TypeScript, and Python. Comfortable working
-                      across the full development lifecycle from requirements
-                      gathering and system design to implementation, testing,
-                      and deployment. Experienced with applied image
-                      recognition concepts, mobile performance constraints, and
-                      data-driven systems. Highly adaptable, self-driven, and
-                      committed to continuous improvement as an engineer.
+                      I am a JavaScript Software Engineer with strong
+                      experience across the JavaScript and TypeScript
+                      ecosystem, building reliable, production-grade web
+                      systems and applications. My work covers backend service
+                      development and API design with Node.js, Express, and
+                      NestJS, as well as frontend engineering with React and
+                      Next.js, where I focus on building data-driven,
+                      maintainable user interfaces. I am comfortable owning
+                      features across the full application lifecycle, from
+                      requirement gathering through design and implementation
+                      to deployment, while keeping systems clean,
+                      well-structured, and easy to evolve. In parallel, I
+                      actively use and deepen my Python skills for backend and
+                      data-oriented applications.
                     </p>
                   </div>
 
                   <div className="space-y-2">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-300/80">
-                      Technical skills
+                      Core technical expertise
                     </p>
                     <div className="space-y-2 text-sm leading-relaxed text-slate-200/90">
                       <div>
                         <p className="font-semibold text-emerald-100">
-                          Backend Development
+                          Primary language
                         </p>
                         <p>
-                          Node.js, NestJS, Express.js, FastAPI, Django,
-                          JavaScript, TypeScript, Python
+                          JavaScript / TypeScript
                         </p>
                         <ul className="mt-1 list-disc space-y-1 pl-5">
-                          <li>API development, request validation, authentication, authorization</li>
-                          <li>Modular backend structure and maintainable code practices</li>
+                          <li>
+                            Deep hands-on experience building client- and
+                            server-side systems, asynchronous workflows,
+                            API-driven architectures and maintainable
+                            application code.
+                          </li>
                         </ul>
                       </div>
                       <div>
                         <p className="font-semibold text-emerald-100">
-                          Databases &amp; APIs
+                          JavaScript ecosystem
                         </p>
-                        <p>PostgreSQL, Supabase, SQL, RESTful API design</p>
                         <ul className="mt-1 list-disc space-y-1 pl-5">
-                          <li>Relational database modeling and schema design</li>
-                          <li>Data integrity, query optimization basics, CRUD operations</li>
-                          <li>Performance optimization</li>
+                          <li>
+                            <span className="font-semibold text-emerald-100">
+                              Frontend engineering:
+                            </span>{" "}
+                            React, Next.js – building responsive,
+                            state-driven interfaces and integrating frontend
+                            applications with backend APIs.
+                          </li>
+                          <li>
+                            <span className="font-semibold text-emerald-100">
+                              Backend engineering:
+                            </span>{" "}
+                            Node.js, Express.js, NestJS – designing RESTful
+                            APIs, authentication and authorization flows,
+                            request validation and modular service
+                            architectures.
+                          </li>
                         </ul>
                       </div>
                       <div>
                         <p className="font-semibold text-emerald-100">
-                          Frontend
+                          Databases &amp; data
                         </p>
-                        <p>React, Next.js, HTML, CSS</p>
                         <ul className="mt-1 list-disc space-y-1 pl-5">
-                          <li>Building responsive UIs and handling client-side state</li>
-                          <li>Integrating frontend apps with third-party and custom APIs</li>
+                          <li>PostgreSQL, Supabase, SQL</li>
+                          <li>
+                            Relational schema design, data modeling, CRUD
+                            operations and basic query optimization.
+                          </li>
                         </ul>
                       </div>
                       <div>
                         <p className="font-semibold text-emerald-100">
-                          Tools &amp; Engineering Practices
+                          Secondary language
                         </p>
-                        <p>
-                          Git, GitHub, version control workflows, basic
-                          deployment practices
-                        </p>
+                        <p>Python</p>
                         <ul className="mt-1 list-disc space-y-1 pl-5">
-                          <li>Feature branching, issue tracking, and collaborative development</li>
-                          <li>Introductory system design and backend architecture concepts</li>
+                          <li>FastAPI, Django for backend and data-driven applications.</li>
+                          <li>Actively deepening proficiency.</li>
                         </ul>
                       </div>
                       <div>
                         <p className="font-semibold text-emerald-100">
-                          Applied Image Recognition (Project-Based)
+                          Web foundations
                         </p>
                         <ul className="mt-1 list-disc space-y-1 pl-5">
-                          <li>Image annotation workflows and region-of-interest (ROI) processing</li>
-                          <li>Mobile image handling and performance-aware processing</li>
-                          <li>Introductory on-device inference concepts and constraints</li>
+                          <li>HTML, CSS</li>
+                          <li>
+                            Strong grasp of layout, responsiveness,
+                            accessibility and standards-compliant markup.
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-emerald-100">
+                          Tools &amp; engineering practices
+                        </p>
+                        <ul className="mt-1 list-disc space-y-1 pl-5">
+                          <li>Git, GitHub, version control workflows</li>
+                          <li>Feature branching, issue tracking, deployment basics</li>
+                          <li>
+                            Introductory system design and backend architecture
+                            concepts
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -263,38 +295,41 @@ export function WhyMeSection() {
                     </p>
                     <div className="space-y-1 text-sm leading-relaxed text-slate-200/90">
                       <p className="font-semibold text-emerald-100">
-                        Freelance Software Developer
+                        Freelance Software Engineer
                       </p>
                       <p className="text-xs text-slate-400">2022 – Present</p>
                       <ul className="mt-1 list-disc space-y-1 pl-5">
                         <li>
-                          Designed, developed, and maintained web and mobile
-                          applications for small businesses, academic use
-                          cases, and individual clients.
+                          Designed and delivered production-ready web and
+                          mobile applications using a JavaScript-first
+                          approach.
                         </li>
                         <li>
-                          Built backend services using Node.js, NestJS,
-                          PostgreSQL, and Supabase with a focus on clean API
-                          structure and data consistency.
+                          Built backend services with Node.js, NestJS,
+                          PostgreSQL, and Supabase, prioritizing clear API
+                          design, data integrity and long-term
+                          maintainability.
                         </li>
                         <li>
-                          Designed RESTful APIs implementing authentication,
-                          role-based access control, and request validation.
+                          Took ownership of features end to end, from backend
+                          logic and API contracts to frontend integration and
+                          final delivery.
                         </li>
                         <li>
-                          Worked on full application flows including user
-                          onboarding, data persistence, and backend-driven
-                          business logic.
+                          Implemented authentication, role-based access
+                          control, and backend-driven business logic aligned
+                          with real client requirements.
                         </li>
                         <li>
-                          Collaborated closely with clients to gather
-                          requirements, clarify expectations, and iteratively
-                          deliver functional solutions.
+                          Worked closely with clients to understand problems,
+                          clarify scope and iteratively deliver practical
+                          solutions.
                         </li>
                         <li>
-                          Managed projects end-to-end, including system design,
-                          development, testing, deployment, and post-delivery
-                          fixes.
+                          Managed projects through the full development
+                          lifecycle, including requirement gathering, system
+                          design, development, testing, deployment and
+                          post-release support.
                         </li>
                       </ul>
                     </div>
@@ -363,7 +398,7 @@ export function WhyMeSection() {
                         <ul className="mt-1 list-disc space-y-1 pl-5">
                           <li>
                             Built a full-featured ecommerce platform with
-                            product catalog, shopping cart, and checkout
+                            product catalog, shopping cart and checkout
                             workflows.
                           </li>
                           <li>
@@ -373,10 +408,10 @@ export function WhyMeSection() {
                           </li>
                           <li>
                             Integrated backend APIs with a relational database
-                            to manage products, orders, and user data.
+                            to manage products, orders and user data.
                           </li>
                           <li>
-                            Focused on reliability, usability, and maintainable
+                            Focused on reliability, usability and maintainable
                             application structure.
                           </li>
                         </ul>
@@ -387,13 +422,13 @@ export function WhyMeSection() {
                         </p>
                         <ul className="mt-1 list-disc space-y-1 pl-5">
                           <li>
-                            Designed and implemented a backend API for image
-                            recognition using a Mobile Net V3 TF-lite model as
-                            a personal project.
+                            Designed and implemented a backend API using
+                            FastAPI for image recognition with a MobileNetV3
+                            TensorFlow Lite model.
                           </li>
                           <li>
                             Focused on efficient image handling, performance
-                            considerations, and offline-friendly concepts.
+                            considerations and offline-friendly concepts.
                           </li>
                           <li>
                             Documented design decisions and released the project
@@ -412,7 +447,7 @@ export function WhyMeSection() {
                           </li>
                           <li>
                             Applied frontend best practices including
-                            performance optimization, accessibility, and
+                            performance optimization, accessibility and
                             SEO-friendly structure.
                           </li>
                           <li>
@@ -474,7 +509,7 @@ export function WhyMeSection() {
                         non-technical stakeholders
                       </li>
                       <li>
-                        Ownership, accountability, and reliability in task
+                        Ownership, accountability and reliability in task
                         execution
                       </li>
                       <li>
@@ -489,14 +524,14 @@ export function WhyMeSection() {
                       Availability
                     </p>
                     <p className="text-sm leading-relaxed text-slate-200/90">
-                      Open to freelance, contract, and full-time software
-                      engineering opportunities.
+                      Open to freelance, contract and full-time
+                      software engineering opportunities.
                     </p>
                   </div>
 
                   <div className="pt-2">
                     <a
-                      href="/my_CV.pdf"
+                      href="/Mafabi_Hussein_CV.pdf"
                       download="Mafabi_Hussein_CV.pdf"
                       className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-2 text-xs font-semibold text-emerald-950 shadow-[0_0_24px_rgba(34,197,94,0.6)] transition-colors hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
                     >
