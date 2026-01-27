@@ -178,7 +178,7 @@ export function ProjectsSection() {
                             />
                           </div>
                         ) : (
-                          <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.22]">
+                          <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.17]">
                             <iframe
                               src={project.previewUrl}
                               title={`${project.name} live preview`}
@@ -211,24 +211,26 @@ export function ProjectsSection() {
                             className="object-cover object-top"
                           />
                         ) : (
-                          <iframe
-                            src={project.previewUrl}
-                            title={`${project.name} live preview`}
-                            loading="lazy"
-                            scrolling="no"
-                            className="pointer-events-none h-full w-full border-none"
-                            onError={() => {
-                              if (
-                                project.useScreenshotFallback &&
-                                project.screenshotSrc
-                              ) {
-                                setFailedPreviews((prev) => ({
-                                  ...prev,
-                                  [project.name]: true,
-                                }));
-                              }
-                            }}
-                          />
+                          <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.17]">
+                            <iframe
+                              src={project.previewUrl}
+                              title={`${project.name} live preview`}
+                              loading="lazy"
+                              scrolling="no"
+                              className="pointer-events-none h-[900px] w-[1440px] border-none"
+                              onError={() => {
+                                if (
+                                  project.useScreenshotFallback &&
+                                  project.screenshotSrc
+                                ) {
+                                  setFailedPreviews((prev) => ({
+                                    ...prev,
+                                    [project.name]: true,
+                                  }));
+                                }
+                              }}
+                            />
+                          </div>
                         )}
                       </div>
                     </div>
