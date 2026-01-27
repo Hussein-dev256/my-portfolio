@@ -147,9 +147,12 @@ export function ProjectsSection() {
                   !!project.screenshotSrc &&
                   hasPreviewError);
               const shouldShowMobileScreenshot =
-                !!project.screenshotSrc &&
-                project.useScreenshotFallback &&
-                hasPreviewError;
+                (project.status === "In Progress" &&
+                  !project.useScreenshotFallback &&
+                  !!project.screenshotSrc) ||
+                (project.useScreenshotFallback &&
+                  !!project.screenshotSrc &&
+                  hasPreviewError);
 
               return (
                 <motion.article
