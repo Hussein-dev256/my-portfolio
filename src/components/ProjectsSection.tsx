@@ -146,6 +146,10 @@ export function ProjectsSection() {
                 (project.useScreenshotFallback &&
                   !!project.screenshotSrc &&
                   hasPreviewError);
+              const shouldShowMobileScreenshot =
+                !!project.screenshotSrc &&
+                project.useScreenshotFallback &&
+                hasPreviewError;
 
               return (
                 <motion.article
@@ -195,9 +199,9 @@ export function ProjectsSection() {
                       </div>
 
                       <div className="block h-full w-full md:hidden">
-                        {project.screenshotSrc ? (
+                        {shouldShowMobileScreenshot ? (
                           <Image
-                            src={project.screenshotSrc}
+                            src={project.screenshotSrc as string}
                             alt={`${project.name} preview screenshot`}
                             fill
                             sizes="100vw"
@@ -210,6 +214,17 @@ export function ProjectsSection() {
                             loading="lazy"
                             scrolling="no"
                             className="pointer-events-none h-full w-full border-none"
+                            onError={() => {
+                              if (
+                                project.useScreenshotFallback &&
+                                project.screenshotSrc
+                              ) {
+                                setFailedPreviews((prev) => ({
+                                  ...prev,
+                                  [project.name]: true,
+                                }));
+                              }
+                            }}
                           />
                         )}
                       </div>
