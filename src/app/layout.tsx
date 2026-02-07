@@ -15,23 +15,23 @@ export const metadata: Metadata = {
     "Portfolio of Mafabi Hussein, a software engineer building reliable, scalable digital solutions: websites, apps, automations, and software systems.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://mhussein.vercel.app"),
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: "/myp-logo.png",
+    shortcut: "/myp-logo.png",
+    apple: "/myp-logo.png",
   },
   openGraph: {
     title: "Mafabi Hussein | Software Engineer & Digital Solutions Builder",
     description:
       "Software engineer focused on high-performance websites, applications, and automations that drive real business results.",
     type: "website",
-    images: ["/favicon.svg"],
+    images: ["/myp-logo.png"],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Mafabi Hussein | Software Engineer & Digital Solutions Builder",
     description:
       "Software engineer focused on high-performance websites, applications, and automations that drive real business results.",
-    images: ["/favicon.svg"],
+    images: ["/myp-logo.png"],
   },
 };
 

@@ -70,6 +70,17 @@ const projects: Project[] = [
     screenshotSrc: "/ObjectID screenshot1.svg",
     useScreenshotFallback: true,
   },
+  {
+    name: "Valentine's Proposal (PWA)",
+    description:
+      "A fun and flirty Progressive Web App that lets users ask someone out for Valentine's Day by generating and sharing a personalized proposal link.",
+    tech: ["TypeScript", "React", "Supabase"],
+    status: "Live",
+    linkLabel: "Try It Out →",
+    href: "https://webdeveloperug-valentines.vercel.app",
+    category: "pwa",
+    previewUrl: "https://webdeveloperug-valentines.vercel.app",
+  },
 ];
 
 const FILTERS = [
@@ -122,11 +133,10 @@ export function ProjectsSection() {
                   key={filter.id}
                   type="button"
                   onClick={() => setActiveFilter(filter.id)}
-                  className={`rounded-full border px-3 py-1 transition-colors duration-150 ${
-                    isActive
-                      ? "border-emerald-400 bg-emerald-500 text-emerald-950 shadow-[0_0_24px_rgba(34,197,94,0.7)]"
-                      : "border-emerald-500/25 bg-slate-900/70 text-slate-200 hover:border-emerald-400/60"
-                  }`}
+                  className={`rounded-full border px-3 py-1 transition-colors duration-150 ${isActive
+                    ? "border-emerald-400 bg-emerald-500 text-emerald-950 shadow-[0_0_24px_rgba(34,197,94,0.7)]"
+                    : "border-emerald-500/25 bg-slate-900/70 text-slate-200 hover:border-emerald-400/60"
+                    }`}
                 >
                   {filter.label}
                 </button>
@@ -165,7 +175,7 @@ export function ProjectsSection() {
                   className="card-glow group relative flex flex-col justify-between overflow-hidden p-4 text-sm text-slate-100/90"
                 >
                   <div className="relative mb-4 overflow-hidden rounded-xl border border-slate-700/60 bg-black/60">
-                    <div className="relative h-40 w-full overflow-hidden rounded-[0.9rem] bg-slate-900">
+                    <div className="relative aspect-[8/5] w-full overflow-hidden rounded-[0.9rem] bg-slate-900">
                       <div className="hidden h-full w-full md:block">
                         {shouldShowDesktopScreenshot ? (
                           <div className="relative h-full w-full">
@@ -178,13 +188,14 @@ export function ProjectsSection() {
                             />
                           </div>
                         ) : (
-                          <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.17]">
+                          <div className="pointer-events-none absolute inset-0 overflow-hidden" style={{ "--preview-scale": "0.2" } as React.CSSProperties}>
                             <iframe
                               src={project.previewUrl}
                               title={`${project.name} live preview`}
                               loading="lazy"
                               scrolling="no"
-                              className="pointer-events-none h-[900px] w-[1440px] border-none"
+                              className="pointer-events-none absolute top-0 left-0 border-none origin-top-left"
+                              style={{ width: "1440px", height: "900px", transform: "scale(var(--preview-scale, 0.2))" }}
                               onError={() => {
                                 if (
                                   project.useScreenshotFallback &&
@@ -211,13 +222,14 @@ export function ProjectsSection() {
                             className="object-cover object-top"
                           />
                         ) : (
-                          <div className="pointer-events-none relative h-full w-full origin-top-left scale-[0.17]">
+                          <div className="pointer-events-none absolute inset-0 overflow-hidden" style={{ "--preview-scale": "0.2" } as React.CSSProperties}>
                             <iframe
                               src={project.previewUrl}
                               title={`${project.name} live preview`}
                               loading="lazy"
                               scrolling="no"
-                              className="pointer-events-none h-[900px] w-[1440px] border-none"
+                              className="pointer-events-none absolute top-0 left-0 border-none origin-top-left"
+                              style={{ width: "1440px", height: "900px", transform: "scale(var(--preview-scale, 0.2))" }}
                               onError={() => {
                                 if (
                                   project.useScreenshotFallback &&
@@ -242,12 +254,11 @@ export function ProjectsSection() {
                         {project.name}
                       </h3>
                       <span
-                        className={`rounded-full px-2 py-0.5 text-[11px] font-medium whitespace-nowrap ${
-                          project.status === "Live" ||
+                        className={`rounded-full px-2 py-0.5 text-[11px] font-medium whitespace-nowrap ${project.status === "Live" ||
                           project.status === "Web-demo"
-                            ? "bg-emerald-500/20 text-emerald-200"
-                            : "bg-yellow-500/20 text-yellow-100"
-                        }`}
+                          ? "bg-emerald-500/20 text-emerald-200"
+                          : "bg-yellow-500/20 text-yellow-100"
+                          }`}
                       >
                         {project.status}
                       </span>
