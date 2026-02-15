@@ -225,14 +225,13 @@ export function ProjectsSection() {
                             className="object-cover object-top"
                           />
                         ) : (
-                          <div className="pointer-events-none absolute inset-0 overflow-hidden" style={{ "--preview-scale": "0.2" } as React.CSSProperties}>
+                          <div className="pointer-events-none absolute inset-0 overflow-hidden">
                             <iframe
                               src={project.previewUrl}
                               title={`${project.name} live preview`}
                               loading="lazy"
                               scrolling="no"
-                              className="pointer-events-none absolute top-0 left-0 border-none origin-top-left"
-                              style={{ width: "1440px", height: "900px", transform: "scale(var(--preview-scale, 0.2))" }}
+                              className="pointer-events-none absolute inset-0 h-full w-full border-none"
                               onError={() => {
                                 if (
                                   project.useScreenshotFallback &&
