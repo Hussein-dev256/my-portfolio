@@ -17,6 +17,7 @@ type Project = {
   previewUrl: string;
   screenshotSrc?: string;
   useScreenshotFallback?: boolean;
+  forceScreenshot?: boolean;
 };
 
 const projects: Project[] = [
@@ -49,12 +50,14 @@ const projects: Project[] = [
     description:
       "An ecommerce Progressive Web App with product listings, cart, and checkout designed for a local eyewear store.",
     tech: ["React", "TypeScript", "PostgreSQL", "Node.js", "Express"],
-    status: "In Progress",
-    linkLabel: "GitHub Repo →",
-    href: "https://github.com/Hussein-dev256/oakley-frontend",
+    status: "Live",
+    linkLabel: "Visit Website →",
+    href: "https://oakley-store.vercel.app/",
     category: "pwa",
-    previewUrl: "https://github.com/Hussein-dev256/oakley-frontend",
+    previewUrl: "https://oakley-store.vercel.app/",
     screenshotSrc: "/Oakley UI.svg",
+    useScreenshotFallback: true,
+    forceScreenshot: true,
   },
   {
     name: "Object ID (Android App)",
@@ -154,15 +157,15 @@ export function ProjectsSection() {
                   !project.useScreenshotFallback &&
                   !!project.screenshotSrc) ||
                 (project.useScreenshotFallback &&
-                  !!project.screenshotSrc &&
-                  hasPreviewError);
+                  (project.forceScreenshot || hasPreviewError) &&
+                  !!project.screenshotSrc);
               const shouldShowMobileScreenshot =
                 (project.status === "In Progress" &&
                   !project.useScreenshotFallback &&
                   !!project.screenshotSrc) ||
                 (project.useScreenshotFallback &&
-                  !!project.screenshotSrc &&
-                  hasPreviewError);
+                  (project.forceScreenshot || hasPreviewError) &&
+                  !!project.screenshotSrc);
 
               return (
                 <motion.article
