@@ -227,11 +227,12 @@ export function ProjectsSection() {
                         ) : (
                           <div className="pointer-events-none absolute inset-0 overflow-hidden">
                             <iframe
+                              key={`${project.name}-mobile`}
                               src={project.previewUrl}
                               title={`${project.name} live preview`}
                               loading="lazy"
                               scrolling="no"
-                              className="pointer-events-none absolute inset-0 h-full w-full border-none"
+                              className="pointer-events-none absolute inset-0 h-full w-full border-none touch-none"
                               onError={() => {
                                 if (
                                   project.useScreenshotFallback &&
