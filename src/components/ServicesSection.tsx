@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, viewportConfig, transitions } from "@/lib/animations";
 
 type Service = {
   id: string;
@@ -71,7 +73,14 @@ export function ServicesSection() {
       className="section-container py-12 md:py-16"
       aria-labelledby="services-heading"
     >
-      <header className="mb-8">
+      <motion.div 
+        className="section-inner"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={staggerContainer}
+      >
+        <motion.header variants={fadeInUp} className="mb-8">
         <div className="h-px w-16 bg-emerald-500/80" />
         <h2
           id="services-heading"
@@ -79,16 +88,17 @@ export function ServicesSection() {
         >
           What I Do
         </h2>
-      </header>
+        </motion.header>
 
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => {
           const isOpen = openId === service.id;
 
           return (
-            <div
+            <motion.div
+              variants={fadeInUp}
               key={service.id}
-              className="group flex flex-col items-stretch rounded-2xl border border-emerald-500/15 bg-slate-900/70 px-3 py-3 text-left shadow-[0_0_26px_rgba(0,0,0,0.8)] transition-transform duration-200 hover:-translate-y-0.5 hover:border-emerald-400/40"
+              className="group flex flex-col items-stretch rounded-2xl border border-emerald-500/15 bg-slate-900/70 px-3 py-3 text-left shadow-[0_0_26px_rgba(0,0,0,0.8)] transition-transform duration-200 hover:-translate-y-1 hover:border-emerald-400/40 hover:shadow-emerald-900/20"
             >
               <div className="flex items-center gap-4">
                 <div className="relative h-16 w-28 flex-shrink-0 overflow-hidden rounded-xl bg-slate-900/80">
@@ -136,10 +146,11 @@ export function ServicesSection() {
                   {service.description}
                 </div>
               )}
-            </div>
+            </motion.div>
           );
         })}
       </div>
+      </motion.div>
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/animations";
 
 type FaqGroupId = "getting-started" | "quality" | "communication";
 
@@ -146,8 +147,14 @@ export function FaqSection() {
 
   return (
     <section id="faq" className="section-container" aria-labelledby="faq-heading">
-      <div className="section-inner space-y-8">
-        <header className="space-y-2 text-center md:text-left">
+      <motion.div 
+        className="section-inner space-y-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={staggerContainer}
+      >
+        <motion.header variants={fadeInUp} className="space-y-2 text-center md:text-left">
           <h2
             id="faq-heading"
             className="text-lg font-semibold uppercase tracking-[0.25em] text-emerald-300/80"
@@ -155,8 +162,8 @@ export function FaqSection() {
             Questions you might have
           </h2>
           <p className="text-sm text-slate-200/80">Quick answers to help you decide.</p>
-        </header>
-        <div className="space-y-3">
+        </motion.header>
+        <motion.div variants={fadeInUp} className="space-y-3">
           {FAQ_GROUPS.map((group) => {
             const isOpen = openGroupId === group.id;
             return (
@@ -213,8 +220,8 @@ export function FaqSection() {
               </div>
             );
           })}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

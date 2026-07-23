@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Navbar } from "./Navbar";
+import { fadeInUp, staggerContainer, fadeIn, transitions } from "@/lib/animations";
 
 const techLogos = [
   { name: "html", label: "HTML5", src: "/logos/html.svg" },
@@ -23,11 +24,18 @@ export function Hero() {
       aria-labelledby="hero-heading"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.6),_transparent_60%)]" />
-      <div className="section-container">
-        <Navbar />
+      <motion.div 
+        className="section-container"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={fadeInUp}>
+          <Navbar />
+        </motion.div>
         <div className="mt-10 flex flex-col gap-10 lg:flex-row lg:items-center">
           {/* Left headline column */}
-          <div className="flex-1 space-y-6">
+          <motion.div variants={fadeInUp} className="flex-1 space-y-6">
             <div className="h-px w-16 bg-emerald-500/70" />
             <p className="text-sm uppercase tracking-[0.3em] text-emerald-300/80">
               Software Engineer & Freelancer
@@ -36,15 +44,18 @@ export function Hero() {
               I design, build, and maintain production-grade digital products
               for individuals, startups, and growing businesses.
             </p>
-          </div>
+          </motion.div>
 
           {/* Center image + name, embedded into background with soft edge fade */}
-          <div className="flex flex-1 flex-col items-center gap-6">
+          <motion.div variants={fadeInUp} className="flex flex-1 flex-col items-center gap-6">
             <motion.div
               className="relative flex items-center justify-center"
-              initial={{ opacity: 0.7 }}
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: [0, 0.7, 1, 0.7], scale: 1 }}
+              transition={{ 
+                opacity: { duration: 8, repeat: Infinity, ease: "easeInOut", times: [0, 0.2, 0.6, 1] },
+                scale: transitions.easeOutSlow 
+              }}
             >
               <div className="pointer-events-none absolute h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.85),_transparent_70%)]" />
               <Image
@@ -73,10 +84,10 @@ export function Hero() {
                 mafabi
               </h1>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right intro copy */}
-          <div className="flex-1 max-w-sm text-sm leading-relaxed text-slate-200/80">
+          <motion.div variants={fadeInUp} className="flex-1 max-w-sm text-sm leading-relaxed text-slate-200/80">
             <p>
               Hi, I&apos;m Mafabi Hussein — a software engineer and freelancer
               dedicated to building fast, scalable, and reliable digital
@@ -87,16 +98,18 @@ export function Hero() {
               high-performing websites, applications, automations, and software
               systems that actually deliver results.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Tech logos row under hero: muted by default, full brand color on hover */}
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-6">
+        <motion.div variants={fadeInUp} className="mt-14 flex flex-wrap items-center justify-center gap-6">
           {techLogos.map((tool) => (
-            <div
+            <motion.div
               key={tool.name}
               className="group inline-flex items-center justify-center"
               title={tool.label}
+              whileHover={{ scale: 1.1, y: -2 }}
+              transition={transitions.easeOut}
             >
               <Image
                 src={tool.src}
@@ -105,10 +118,10 @@ export function Hero() {
                 height={40}
                 className="h-10 w-10 opacity-100 transition-all duration-300 ease-out md:opacity-60 md:grayscale md:group-hover:opacity-100 md:group-hover:grayscale-0"
               />
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import { siteConfig } from "@/config/siteConfig";
 import { validatePayload } from "@/lib/validate";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, viewportConfig, transitions } from "@/lib/animations";
 
 type Status =
   | { type: "idle" }
@@ -116,8 +118,14 @@ export function ContactSection() {
       className="section-container"
       aria-labelledby="contact-heading"
     >
-      <div className="section-inner flex flex-col items-center gap-10">
-        <div className="w-full max-w-xl text-center">
+      <motion.div 
+        className="section-inner flex flex-col items-center gap-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={staggerContainer}
+      >
+        <motion.div variants={fadeInUp} className="w-full max-w-xl text-center">
           <h2
             id="contact-heading"
             className="text-lg font-semibold uppercase tracking-[0.25em] text-emerald-300/80"
@@ -217,9 +225,9 @@ export function ContactSection() {
               )}
             </div>
           </form>
-        </div>
+        </motion.div>
 
-        <div className="mt-16 flex w-full flex-col items-center gap-6">
+        <motion.div variants={fadeInUp} className="mt-16 flex w-full flex-col items-center gap-6">
           <h3 className="text-base font-medium text-emerald-50 md:text-lg">Contact me</h3>
 
           <div className="inline-flex flex-nowrap items-center justify-center gap-2 rounded-2xl border border-emerald-500/70 bg-[#0b0f14]/80 px-2 py-2 sm:gap-4 sm:rounded-3xl sm:px-4 sm:py-3 md:gap-6 md:px-6 md:py-4">
@@ -279,8 +287,8 @@ export function ContactSection() {
               <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">Call</span>
             </a>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

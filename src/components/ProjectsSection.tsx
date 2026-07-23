@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { fadeInUp, viewportConfig, transitions } from "@/lib/animations";
 
 type ProjectCategory = "website" | "pwa" | "app" | "automation";
 
@@ -123,8 +124,20 @@ export function ProjectsSection() {
       className="section-container"
       aria-labelledby="projects-heading"
     >
-      <div className="section-inner">
-        <header className="mb-6 space-y-4">
+      <motion.div 
+        className="section-inner"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.1 }
+          }
+        }}
+      >
+        <motion.header variants={fadeInUp} className="mb-6 space-y-4">
           <div>
             <h2
               id="projects-heading"
@@ -157,9 +170,10 @@ export function ProjectsSection() {
               );
             })}
           </div>
-        </header>
+        </motion.header>
 
-        <AnimatePresence mode="popLayout">
+        <motion.div variants={fadeInUp}>
+          <AnimatePresence mode="popLayout">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {visibleProjects.map((project) => {
               const hasPreviewError = failedPreviews[project.name];
@@ -185,8 +199,9 @@ export function ProjectsSection() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
+                  whileHover={{ y: -4, transition: transitions.easeOut }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="card-glow group relative flex flex-col justify-between overflow-hidden p-4 text-sm text-slate-100/90"
+                  className="card-glow group relative flex flex-col justify-between overflow-hidden p-4 text-sm text-slate-100/90 transition-shadow duration-300 hover:shadow-xl hover:shadow-emerald-900/20"
                 >
                   <div className="relative mb-4 overflow-hidden rounded-xl border border-slate-700/60 bg-black/60">
                     <div className="relative aspect-[8/5] w-full overflow-hidden rounded-[0.9rem] bg-slate-900">
@@ -198,11 +213,11 @@ export function ProjectsSection() {
                               alt={`${project.name} preview screenshot`}
                               fill
                               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                              className="object-cover object-top"
+                              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                             />
                           </div>
                         ) : (
-                          <div className="pointer-events-none absolute inset-0 overflow-hidden" style={{ "--preview-scale": "0.2" } as React.CSSProperties}>
+                          <div className="pointer-events-none absolute inset-0 overflow-hidden transition-transform duration-700 ease-out group-hover:scale-105" style={{ "--preview-scale": "0.2" } as React.CSSProperties}>
                             <iframe
                               src={project.previewUrl}
                               title={`${project.name} live preview`}
@@ -233,10 +248,10 @@ export function ProjectsSection() {
                             alt={`${project.name} preview screenshot`}
                             fill
                             sizes="100vw"
-                            className="object-cover object-top"
+                            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                           />
                         ) : (
-                          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                          <div className="pointer-events-none absolute inset-0 overflow-hidden transition-transform duration-700 ease-out group-hover:scale-105">
                             <iframe
                               src={project.previewUrl}
                               title={`${project.name} live preview`}
@@ -285,16 +300,16 @@ export function ProjectsSection() {
                     {project.tech.map((item) => (
                       <span
                         key={item}
-                        className="rounded-full bg-emerald-500/15 px-2 py-0.5"
+                        className="rounded-full bg-emerald-500/15 px-2 py-0.5 transition-colors duration-300 group-hover:bg-emerald-500/25"
                       >
                         {item}
                       </span>
                     ))}
                   </div>
 
-                  <div className="mt-3 text-[11px] font-medium text-emerald-300">
+                  <div className="mt-3 text-[11px] font-medium text-emerald-300 transition-colors duration-300 group-hover:text-emerald-200">
                     <span>{project.linkLabel}</span>
-                    <span aria-hidden="true" className="ml-1">
+                    <span aria-hidden="true" className="ml-1 transition-transform duration-300 group-hover:translate-x-0.5 inline-block">
                       ↗
                     </span>
                   </div>
@@ -310,8 +325,9 @@ export function ProjectsSection() {
               );
             })}
           </div>
-        </AnimatePresence>
-      </div>
+          </AnimatePresence>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

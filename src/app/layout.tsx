@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { MotionProvider } from "@/components/MotionProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -67,7 +68,9 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} bg-background text-foreground antialiased`}
       >
-        {children}
+        <MotionProvider>
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );

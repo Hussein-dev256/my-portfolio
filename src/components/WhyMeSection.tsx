@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { fadeInUp, staggerContainer, viewportConfig, transitions } from "@/lib/animations";
 
 type Testimonial = {
   name: string;
@@ -57,8 +58,14 @@ export function WhyMeSection() {
       className="section-container"
       aria-labelledby="why-heading"
     >
-      <div className="section-inner space-y-8">
-        <div className="space-y-4">
+      <motion.div 
+        className="section-inner space-y-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={staggerContainer}
+      >
+        <motion.div variants={fadeInUp} className="space-y-4">
           <h2
             id="why-heading"
             className="text-lg font-semibold uppercase tracking-[0.25em] text-emerald-300/80"
@@ -93,17 +100,19 @@ export function WhyMeSection() {
 
         <div className="rounded-2xl border border-emerald-500/25 bg-slate-900/50 p-4 shadow-[0_0_24px_rgba(15,23,42,0.9)] md:p-5">
           <div className="flex w-full items-center justify-between gap-3">
-            <button
+            <motion.button
               type="button"
               onClick={() => setIsCvOpen((prev) => !prev)}
               className="flex flex-1 items-center justify-between gap-3 text-sm font-medium text-emerald-100 text-left"
               aria-expanded={isCvOpen}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               <span>My CV</span>
               <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/60 bg-emerald-500/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-emerald-200">
                 <span>{isCvOpen ? "Hide" : "View"}</span>
               </span>
-            </button>
+            </motion.button>
             <a
               href="/Mafabi_Hussein_CV.pdf"
               download="Mafabi_Hussein_CV.pdf"
@@ -544,13 +553,14 @@ export function WhyMeSection() {
           </AnimatePresence>
         </div>
 
-        <div className="space-y-4">
+        <motion.div variants={fadeInUp} className="space-y-4">
           <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-300/80">
             Testimonials
           </h3>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportConfig} className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {testimonials.map((testimonial) => (
-              <article
+              <motion.article
+                variants={fadeInUp}
                 key={testimonial.name}
                 className="card-glow flex h-full flex-col justify-between rounded-2xl border border-slate-700/70 bg-slate-900/70 p-4 text-sm text-slate-100/90"
               >
@@ -563,11 +573,11 @@ export function WhyMeSection() {
                     {testimonial.role}, {testimonial.organization}
                   </p>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

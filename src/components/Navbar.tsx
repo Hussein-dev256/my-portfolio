@@ -3,6 +3,8 @@
 import Link from "next/link";
 import type { MouseEvent } from "react";
 import { siteConfig } from "@/config/siteConfig";
+import { motion } from "framer-motion";
+import { buttonInteraction } from "@/lib/animations";
 
 const navIcons = [
   (
@@ -68,15 +70,20 @@ export function Navbar() {
       className="flex items-center justify-center gap-4 md:gap-8"
     >
       {siteConfig.nav.map((item, index) => (
-        <Link
+        <motion.div
           key={item.href}
-          href={item.href}
-          onClick={(event) => handleClick(item.href, event)}
-          className="flex items-center gap-2 rounded-full border border-emerald-500/40 bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.28),_transparent_55%),_rgba(15,23,42,0.96)] px-4 py-1.5 text-xs font-medium text-emerald-50 shadow-[0_0_22px_rgba(34,197,94,0.32)] transition-transform duration-150 hover:-translate-y-0.5 md:px-5 md:text-sm"
+          whileHover={buttonInteraction.hover}
+          whileTap={buttonInteraction.tap}
         >
-          {navIcons[index]}
-          <span className="text-emerald-50/90">{item.label}</span>
-        </Link>
+          <Link
+            href={item.href}
+            onClick={(event) => handleClick(item.href, event)}
+            className="flex items-center gap-2 rounded-full border border-emerald-500/40 bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.28),_transparent_55%),_rgba(15,23,42,0.96)] px-4 py-1.5 text-xs font-medium text-emerald-50 shadow-[0_0_22px_rgba(34,197,94,0.32)] transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] md:px-5 md:text-sm"
+          >
+            {navIcons[index]}
+            <span className="text-emerald-50/90">{item.label}</span>
+          </Link>
+        </motion.div>
       ))}
     </nav>
   );
