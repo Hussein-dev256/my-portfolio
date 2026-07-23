@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { fadeInUp, staggerContainer, viewportConfig, transitions } from "@/lib/animations";
 
 type Service = {

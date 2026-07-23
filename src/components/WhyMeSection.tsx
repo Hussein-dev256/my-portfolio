@@ -96,7 +96,7 @@ export function WhyMeSection() {
               <span>End-to-end delivery from idea to production</span>
             </li>
           </ul>
-        </div>
+        </motion.div>
 
         <div className="rounded-2xl border border-emerald-500/25 bg-slate-900/50 p-4 shadow-[0_0_24px_rgba(15,23,42,0.9)] md:p-5">
           <div className="flex w-full items-center justify-between gap-3">

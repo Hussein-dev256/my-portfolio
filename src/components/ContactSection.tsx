@@ -210,13 +210,15 @@ export function ContactSection() {
             </div>
 
             <div className="mt-4 flex flex-col items-center gap-2">
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02, transition: transitions.easeOut }}
+                whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
                 className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-[#02050e] px-8 py-2 text-sm font-medium tracking-wide text-emerald-100 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? "Sending..." : "Send message"}
-              </button>
+              </motion.button>
               {status.type === "success" && (
                 <p className="text-xs text-emerald-300">{status.message}</p>
               )}

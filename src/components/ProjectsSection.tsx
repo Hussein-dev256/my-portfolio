@@ -173,8 +173,11 @@ export function ProjectsSection() {
         </motion.header>
 
         <motion.div variants={fadeInUp}>
-          <AnimatePresence mode="popLayout">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <motion.div 
+            layout
+            className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+          >
+            <AnimatePresence mode="popLayout">
             {visibleProjects.map((project) => {
               const hasPreviewError = failedPreviews[project.name];
               const shouldShowDesktopScreenshot =
@@ -196,11 +199,11 @@ export function ProjectsSection() {
                 <motion.article
                   key={project.name}
                   layout
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  whileHover={{ y: -4, transition: transitions.easeOut }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  whileHover={{ y: -4 }}
+                  transition={transitions.easeOutSlow}
                   className="card-glow group relative flex flex-col justify-between overflow-hidden p-4 text-sm text-slate-100/90 transition-shadow duration-300 hover:shadow-xl hover:shadow-emerald-900/20"
                 >
                   <div className="relative mb-4 overflow-hidden rounded-xl border border-slate-700/60 bg-black/60">
@@ -324,8 +327,8 @@ export function ProjectsSection() {
                 </motion.article>
               );
             })}
-          </div>
-          </AnimatePresence>
+            </AnimatePresence>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

@@ -178,14 +178,24 @@ export function FaqSection() {
                   aria-expanded={isOpen}
                 >
                   <span>{group.title}</span>
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 text-emerald-300">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-3.5 w-3.5 fill-none stroke-current stroke-2">
+                  <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-emerald-300">
+                    <motion.svg 
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      aria-hidden="true" viewBox="0 0 20 20" className="h-3.5 w-3.5 fill-none stroke-current stroke-2"
+                    >
                       <path d="M5 8l5 5 5-5" />
-                    </svg>
+                    </motion.svg>
                   </span>
                 </button>
+                <AnimatePresence initial={false}>
                 {isOpen && (
-                  <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
                     <div className="mt-3 divide-y divide-slate-800/80 text-sm text-slate-100/90">
                       {group.items.map((item) => {
                         const isItemOpen = isOpen && openQuestionId === item.id;
@@ -198,25 +208,37 @@ export function FaqSection() {
                               aria-expanded={isItemOpen}
                             >
                               <span>{item.question}</span>
-                              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-slate-800 text-emerald-300">
-                                <svg aria-hidden="true" viewBox="0 0 20 20" className="h-3 w-3 fill-none stroke-current stroke-2">
+                              <span className="inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-emerald-300">
+                                <motion.svg 
+                                  animate={{ rotate: isItemOpen ? 180 : 0 }}
+                                  aria-hidden="true" viewBox="0 0 20 20" className="h-3 w-3 fill-none stroke-current stroke-2"
+                                >
                                   <path d="M5 8l5 5 5-5" />
-                                </svg>
+                                </motion.svg>
                               </span>
                             </button>
+                            <AnimatePresence initial={false}>
                             {isItemOpen && (
-                              <div className="overflow-hidden">
-                                <p className="pt-1 text-[13px] leading-relaxed text-slate-200/85">
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.25, ease: "easeInOut" }}
+                                className="overflow-hidden"
+                              >
+                                <p className="pt-2 text-[13px] leading-relaxed text-slate-200/85">
                                   {item.answer}
                                 </p>
-                              </div>
+                              </motion.div>
                             )}
+                            </AnimatePresence>
                           </div>
                         );
                       })}
                     </div>
-                  </div>
+                  </motion.div>
                 )}
+                </AnimatePresence>
               </div>
             );
           })}
