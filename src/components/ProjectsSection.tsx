@@ -281,7 +281,7 @@ export function ProjectsSection() {
 
                   <div className="space-y-2">
                     <div className="flex items-center justify-between gap-2">
-                      <h3 className="text-sm font-semibold text-emerald-50">
+                      <h3 className="text-sm font-semibold text-emerald-50 min-w-0 truncate">
                         {project.name}
                       </h3>
                       <span

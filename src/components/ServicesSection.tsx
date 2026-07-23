@@ -112,8 +112,8 @@ export function ServicesSection() {
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/45 via-transparent to-transparent" />
                 </div>
 
-                <div className="flex-1">
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-50 md:text-base">
+                <div className="flex-1 min-w-0 pr-2">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-50 md:text-base break-words">
                     {service.title}
                   </h3>
                 </div>
