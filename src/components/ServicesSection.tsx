@@ -70,7 +70,7 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="section-container py-12 md:py-16"
+      className="section-container"
       aria-labelledby="services-heading"
     >
       <motion.div 

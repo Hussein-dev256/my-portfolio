@@ -20,7 +20,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative pt-10 pb-16 lg:pt-16 lg:pb-24"
+      className="relative pt-10 pb-8 lg:pt-16 lg:pb-16"
       aria-labelledby="hero-heading"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.6),_transparent_60%)]" />
