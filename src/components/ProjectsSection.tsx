@@ -46,6 +46,17 @@ const projects: Project[] = [
     screenshotSrc: "/pamoja screenshot.svg",
   },
   {
+    name: "Acholi Women in Health Foundation",
+    description:
+      "A public health and impact website for a women-led foundation delivering community-rooted care for women and girls in Northern Uganda.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    status: "Live",
+    linkLabel: "Visit Website →",
+    href: "https://awihf.vercel.app/",
+    category: "website",
+    previewUrl: "https://awihf.vercel.app/",
+  },
+  {
     name: "Oakley Store Kampala (PWA)",
     description:
       "An ecommerce Progressive Web App with product listings, cart, and checkout designed for a local eyewear store.",
