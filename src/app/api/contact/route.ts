@@ -75,6 +75,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, message: "Message received." });
   }
 
+  const cookieHeader = req.headers.get("cookie") || "";
+  const csrfCookie = cookieHeader
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(`${CSRF_COOKIE_NAME}=`))
+    ?.split("=")[1];
+
+  if (!csrf || !csrfCookie || csrf !== decodeURIComponent(csrfCookie)) {
+    return NextResponse.json(
+      { ok: false, message: "Your secure form session expired. Please refresh and try again." },
+      { status: 403 },
+    );
+  }
+
   const allowedOriginsEnv = process.env.CONTACT_ALLOWED_ORIGIN;
   if (allowedOriginsEnv) {
     const origin = req.headers.get("origin");
@@ -115,10 +129,10 @@ export async function POST(req: Request) {
       for (let i = 1; i <= attempts; i++) {
         try {
           await sendContactEmail({
-            name: name!,
-            email: email!,
-            message: message!,
-            company,
+            name: String(name).trim(),
+            email: String(email).trim(),
+            message: String(message).trim(),
+            company: company ? String(company).trim() : undefined,
             ip,
           });
           return;

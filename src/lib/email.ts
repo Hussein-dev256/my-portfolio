@@ -8,6 +8,15 @@ type EmailData = {
   ip?: string;
 };
 
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 export async function sendContactEmail(data: EmailData) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -21,6 +30,11 @@ export async function sendContactEmail(data: EmailData) {
   const recipients = backupAddr ? [toAddr, backupAddr] : toAddr;
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mhussein.vercel.app";
+  const safeName = escapeHtml(data.name);
+  const safeEmail = escapeHtml(data.email);
+  const safeCompany = escapeHtml(data.company || "Not provided");
+  const safeMessage = escapeHtml(data.message);
+  const safeSiteUrl = escapeHtml(siteUrl);
 
   const html = `
 <!DOCTYPE html>
@@ -36,38 +50,38 @@ export async function sendContactEmail(data: EmailData) {
         <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
           <tr>
             <td style="padding:40px;">
-              <h2 style="margin:0 0 24px 0;color:#0b0b0b;font-size:24px;font-weight:600;">New Contact Form Submission</h2>
+              <h2 style="margin:0 0 24px 0;color:#0b0b0b;font-size:24px;font-weight:600;">New Portfolio Contact Message</h2>
               
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
                 <tr>
                   <td style="padding:12px 0;border-bottom:1px solid #e5e5e5;">
                     <strong style="color:#666;">Name:</strong>
-                    <div style="margin-top:4px;color:#0b0b0b;">${data.name}</div>
+                    <div style="margin-top:4px;color:#0b0b0b;">${safeName}</div>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding:12px 0;border-bottom:1px solid #e5e5e5;">
                     <strong style="color:#666;">Email:</strong>
                     <div style="margin-top:4px;color:#0b0b0b;">
-                      <a href="mailto:${data.email}" style="color:#0066cc;text-decoration:none;">${data.email}</a>
+                      <a href="mailto:${safeEmail}" style="color:#c92925;text-decoration:none;">${safeEmail}</a>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding:12px 0;border-bottom:1px solid #e5e5e5;">
-                    <strong style="color:#666;">Company:</strong>
-                    <div style="margin-top:4px;color:#0b0b0b;">${data.company || "Not provided"}</div>
+                    <strong style="color:#666;">Company / Team:</strong>
+                    <div style="margin-top:4px;color:#0b0b0b;">${safeCompany}</div>
                   </td>
                 </tr>
               </table>
               
               <div style="margin-top:24px;">
                 <strong style="color:#666;display:block;margin-bottom:8px;">Message:</strong>
-                <div style="background-color:#f9f9f9;padding:16px;border-radius:4px;border-left:4px solid #0066cc;white-space:pre-wrap;color:#0b0b0b;line-height:1.6;">${data.message}</div>
+                <div style="background-color:#f9f9f9;padding:16px;border-radius:4px;border-left:4px solid #f5c400;white-space:pre-wrap;color:#0b0b0b;line-height:1.6;">${safeMessage}</div>
               </div>
               
               <div style="margin-top:32px;padding-top:24px;border-top:1px solid #e5e5e5;color:#999;font-size:14px;">
-                <p style="margin:0;">This message was sent from your portfolio contact form at <a href="${siteUrl}" style="color:#0066cc;text-decoration:none;">${siteUrl}</a></p>
+                <p style="margin:0;">This message was sent from Mafabi Hussein's portfolio contact form at <a href="${safeSiteUrl}" style="color:#c92925;text-decoration:none;">${safeSiteUrl}</a></p>
               </div>
             </td>
           </tr>
@@ -82,18 +96,18 @@ export async function sendContactEmail(data: EmailData) {
     from: fromAddr,
     to: recipients,
     replyTo: data.email,
-    subject: `New Contact Form Submission Message: This message was sent from your portfolio contact form at ${siteUrl}`,
+    subject: `New Portfolio Contact Message from ${data.name}`,
     html,
     text: `New Contact Form Submission
 
 Name: ${data.name}
 Email: ${data.email}
-Company: ${data.company || "Not provided"}
+Company / Team: ${data.company || "Not provided"}
 
 Message:
 ${data.message}
 
 ---
-This message was sent from your portfolio contact form.`,
+This message was sent from Mafabi Hussein's portfolio contact form.`,
   });
 }

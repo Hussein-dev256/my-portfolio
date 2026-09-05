@@ -1,17 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
-import { siteConfig } from "@/config/siteConfig";
-import { validatePayload } from "@/lib/validate";
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer, viewportConfig, transitions } from "@/lib/animations";
+import { profile } from "@/content/portfolio";
+import { transitions } from "@/lib/animations";
+import { validatePayload } from "@/lib/validate";
 
 type Status =
   | { type: "idle" }
   | { type: "submitting" }
   | { type: "success"; message: string }
   | { type: "error"; message: string };
+
+const contactLinks = [
+  { label: "Email", detail: profile.email, href: `mailto:${profile.email}`, external: false },
+  { label: "GitHub", detail: "Public repositories", href: profile.social.github, external: true },
+  { label: "LinkedIn", detail: "Professional profile", href: profile.social.linkedin, external: true },
+  { label: "CV", detail: "Download resume", href: profile.cvHref, external: false },
+] as const;
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -27,10 +34,10 @@ export function ContactSection() {
       try {
         const res = await fetch("/api/contact", { method: "GET" });
         const data = await res.json();
-        if (active && typeof data?.csrfToken === "string") {
-          setCsrfToken(data.csrfToken);
-        }
-      } catch {}
+        if (active && typeof data?.csrfToken === "string") setCsrfToken(data.csrfToken);
+      } catch {
+        if (active) setCsrfToken(null);
+      }
     })();
     return () => {
       active = false;
@@ -66,12 +73,11 @@ export function ContactSection() {
       return;
     }
 
-    if (
-      payload.name.length > 120 ||
-      payload.email.length > 160 ||
-      payload.message.length > 5000
-    ) {
-      setStatus({ type: "error", message: "One or more fields are too long." });
+    if (!csrfToken) {
+      setStatus({
+        type: "error",
+        message: "The secure form session is still preparing. Please wait a moment and try again.",
+      });
       return;
     }
 
@@ -80,9 +86,7 @@ export function ContactSection() {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
@@ -91,9 +95,7 @@ export function ContactSection() {
       if (!res.ok || !data.ok) {
         setStatus({
           type: "error",
-          message:
-            data.message ||
-            "Something went wrong while sending your message. Please try again.",
+          message: data.message || "Something went wrong while sending your message. Please try again.",
         });
         return;
       }
@@ -104,8 +106,7 @@ export function ContactSection() {
       console.error("Contact form submit error", error);
       setStatus({
         type: "error",
-        message:
-          "Something went wrong while sending your message. Please try again.",
+        message: "Something went wrong while sending your message. Please try again.",
       });
     }
   }
@@ -115,203 +116,150 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="section-container"
+      className="stage-section bg-[#050505] text-white"
       aria-labelledby="contact-heading"
     >
-      <motion.div 
-        className="section-inner flex flex-col items-center gap-10"
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportConfig}
-        variants={staggerContainer}
-      >
-        <motion.div variants={fadeInUp} className="w-full max-w-xl text-center">
-          <h2
-            id="contact-heading"
-            className="text-lg font-semibold uppercase tracking-[0.25em] text-emerald-300/80"
-          >
-            TALK TO ME
-          </h2>
-          <p className="mt-2 text-sm leading-relaxed text-slate-200/85">
-            Let&apos;s build something meaningful together. Share a bit about your
-            project, timeline, and goals — I&apos;ll get back to you with next
-            steps.
-          </p>
+      <div className="section-container">
+        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div>
+            <p className="section-kicker dark-kicker">Contact</p>
+            <h2
+              id="contact-heading"
+              className="display-type mt-4 max-w-3xl text-balance text-5xl leading-[0.92] text-white sm:text-6xl lg:text-7xl"
+            >
+              Looking for a software engineer?
+            </h2>
+            <p className="brand-copy mt-5 max-w-xl font-semibold text-white/68">
+              Explore the systems I have built, review my technical work, or
+              get in touch to discuss an engineering opportunity.
+            </p>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {contactLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
+                  className="brand-focus-ring rounded-[1rem] bg-[#141414] px-4 py-4 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#1c1c1c]"
+                >
+                  <span className="block text-sm font-black">{item.label}</span>
+                  <span className="mt-1 block truncate text-xs text-white/58">{item.detail}</span>
+                </a>
+              ))}
+            </div>
+          </div>
 
           <form
             id="contact-form"
             onSubmit={handleSubmit}
-            className="mt-6 space-y-4 text-sm text-left"
+            className="space-y-5 rounded-[1.4rem] border border-white/10 bg-[#080807] p-5 text-white shadow-[0_24px_70px_rgba(0,0,0,0.24)] sm:p-6"
             noValidate
           >
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="space-y-1.5">
-                <label htmlFor="name" className="text-xs uppercase tracking-[0.18em] text-slate-300">
-                  Name
-                </label>
+              <FormField label="Name" htmlFor="name">
                 <input
                   id="name"
                   name="name"
                   required
                   minLength={2}
                   maxLength={120}
-                  className="h-10 w-full rounded-full border border-emerald-500/20 bg-black/40 px-4 text-sm text-emerald-50 outline-none ring-emerald-500/60 placeholder:text-slate-500 focus:border-emerald-400 focus:ring"
+                  autoComplete="name"
+                  className="brand-focus-ring h-12 w-full rounded-[0.9rem] border border-white/12 bg-white/[0.06] px-4 text-sm text-white placeholder:text-white/35"
                   placeholder="Your name"
                 />
-              </div>
-              <div className="space-y-1.5">
-                <label htmlFor="email" className="text-xs uppercase tracking-[0.18em] text-slate-300">
-                  Email
-                </label>
+              </FormField>
+              <FormField label="Email" htmlFor="email">
                 <input
                   id="email"
                   name="email"
                   type="email"
                   required
                   maxLength={160}
-                  className="h-10 w-full rounded-full border border-emerald-500/20 bg-black/40 px-4 text-sm text-emerald-50 outline-none ring-emerald-500/60 placeholder:text-slate-500 focus:border-emerald-400 focus:ring"
+                  autoComplete="email"
+                  className="brand-focus-ring h-12 w-full rounded-[0.9rem] border border-white/12 bg-white/[0.06] px-4 text-sm text-white placeholder:text-white/35"
                   placeholder="you@example.com"
                 />
-              </div>
+              </FormField>
             </div>
 
-            <div className="space-y-1.5">
-              <label htmlFor="company" className="text-xs uppercase tracking-[0.18em] text-slate-300">
-                Company / Organization (optional)
-              </label>
+            <FormField label="Company / Team" htmlFor="company">
               <input
                 id="company"
                 name="company"
                 maxLength={160}
-                className="h-10 w-full rounded-full border border-emerald-500/20 bg-black/40 px-4 text-sm text-emerald-50 outline-none ring-emerald-500/60 placeholder:text-slate-500 focus:border-emerald-400 focus:ring"
-                placeholder="Where you work or who this is for"
+                autoComplete="organization"
+                className="brand-focus-ring h-12 w-full rounded-[0.9rem] border border-white/12 bg-white/[0.06] px-4 text-sm text-white placeholder:text-white/35"
+                placeholder="Company, team, or hiring context"
               />
-            </div>
+            </FormField>
 
-            <div className="space-y-1.5">
-              <label htmlFor="message" className="text-xs uppercase tracking-[0.18em] text-slate-300">
-                Project details
-              </label>
+            <FormField label="Message" htmlFor="message">
               <textarea
                 id="message"
                 name="message"
                 required
                 minLength={10}
                 maxLength={5000}
-                className="min-h-[120px] w-full rounded-2xl border border-emerald-500/20 bg-black/40 px-4 py-3 text-sm text-emerald-50 outline-none ring-emerald-500/60 placeholder:text-slate-500 focus:border-emerald-400 focus:ring"
-                placeholder="Share what you want to build, your timeline, and what success looks like."
+                className="brand-focus-ring min-h-[150px] w-full rounded-[0.9rem] border border-white/12 bg-white/[0.06] px-4 py-3 text-sm leading-6 text-white placeholder:text-white/35"
+                placeholder="Share the opportunity, role context, technical question, or next step."
               />
-            </div>
+            </FormField>
 
-            {/* Honeypot field for spam bots */}
             <div className="hidden" aria-hidden="true">
               <label htmlFor="website">Website</label>
               <input id="website" name="website" type="text" autoComplete="off" tabIndex={-1} />
             </div>
 
-            <div className="mt-4 flex flex-col items-center gap-2">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <motion.button
-                whileHover={{ scale: 1.02, transition: transitions.easeOut }}
+                whileHover={{ y: -2, transition: transitions.easeOut }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-[#02050e] px-8 py-2 text-sm font-medium tracking-wide text-emerald-100 disabled:cursor-not-allowed disabled:opacity-70"
+                className="brand-focus-ring inline-flex min-h-12 items-center justify-center rounded-full bg-yellow-300 px-6 text-sm font-black text-black transition-colors hover:bg-yellow-200 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? "Sending..." : "Send message"}
               </motion.button>
+              <p className="text-xs leading-5 text-white/50">
+                Validation, rate limits, and secure token protection are active.
+              </p>
+            </div>
+
+            <div aria-live="polite">
               {status.type === "success" && (
-                <p className="text-xs text-emerald-300">{status.message}</p>
+                <p className="rounded-[1rem] border border-yellow-300/35 bg-yellow-300/10 px-4 py-3 text-sm text-yellow-100">
+                  {status.message}
+                </p>
               )}
               {status.type === "error" && (
-                <p className="text-xs text-red-300">{status.message}</p>
+                <p className="rounded-[1rem] border border-red-300/35 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+                  {status.message}
+                </p>
               )}
             </div>
           </form>
-        </motion.div>
-
-        <motion.div variants={fadeInUp} className="mt-16 flex w-full flex-col items-center gap-6">
-          <h3 className="text-base font-medium text-emerald-50 md:text-lg">Contact me</h3>
-
-          <div className="inline-flex flex-nowrap items-center justify-center gap-2 rounded-2xl border border-emerald-500/70 bg-[#0b0f14]/80 px-2 py-2 sm:gap-4 sm:rounded-3xl sm:px-4 sm:py-3 md:gap-6 md:px-6 md:py-4">
-            {/* Gmail -> scroll to contact form */}
-            <a
-              href="#contact-form"
-              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
-              aria-label="Go to contact form"
-            >
-              <Image src="/Gmail icon.svg" alt="Gmail icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
-              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">Gmail</span>
-            </a>
-
-            {/* WhatsApp */}
-            <a
-              href="https://wa.me/256760305803"
-              target="_blank"
-              rel="noreferrer"
-              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
-              aria-label="Chat on WhatsApp"
-            >
-              <Image src="/WhatsApp Icon.svg" alt="WhatsApp icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
-              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">WhatsApp</span>
-            </a>
-
-            {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/in/hussein-hussein-7a8a2436b/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
-              aria-label="View LinkedIn profile"
-            >
-              <Image src="/LinkedIn icon.svg" alt="LinkedIn icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
-              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">LinkedIn</span>
-            </a>
-
-            {/* X (Twitter) */}
-            <a
-              href="https://x.com/son_of_antonn"
-              target="_blank"
-              rel="noreferrer"
-              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
-              aria-label="View X profile"
-            >
-              <Image src="/X icon.svg" alt="X icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
-              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">X</span>
-            </a>
-
-            {/* Call */}
-            <a
-              href="tel:+256760305803"
-              className="flex w-8 flex-col items-center gap-1 text-[11px] text-slate-200 transition-colors hover:text-emerald-300 sm:w-9 md:w-10"
-              aria-label="Call Hussein"
-            >
-              <Image src="/call icon.svg" alt="Phone call icon" width={40} height={40} className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9" />
-              <span className="hidden text-[10px] text-slate-400 sm:block sm:text-[11px]">Call</span>
-            </a>
-          </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
 
-type ContactIconProps = {
+function FormField({
+  label,
+  htmlFor,
+  children,
+}: {
   label: string;
-  href: string;
-  initials: string;
-};
-
-function ContactIcon({ label, href, initials }: ContactIconProps) {
+  htmlFor: string;
+  children: ReactNode;
+}) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={label}
-      title={label}
-      className="card-glow flex h-11 w-11 items-center justify-center rounded-full text-xs font-semibold uppercase tracking-wide text-emerald-50 transition-transform duration-150 hover:-translate-y-0.5"
-    >
-      {initials}
-    </a>
+    <div className="space-y-2">
+      <label htmlFor={htmlFor} className="text-xs font-black uppercase tracking-[0.16em] text-white/68">
+        {label}
+      </label>
+      {children}
+    </div>
   );
 }

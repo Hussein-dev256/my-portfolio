@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mafabi Hussein Portfolio
 
-## Getting Started
+Personal software engineering portfolio built with Next.js, TypeScript, React, Tailwind CSS, and Framer Motion.
 
-First, run the development server:
+The site is designed for recruiters, hiring managers, technical interviewers, and engineers. It presents fast project evidence on the homepage and deeper technical reasoning through the Engineering route.
+
+## Routes
+
+- `/` - homepage: identity, profile, capabilities, selected work, engineering gateway, contact
+- `/work` - curated project inventory
+- `/engineering` - architecture, decisions, constraints, trade-offs, and future improvements
+- `/contact` - direct contact form and professional links
+- `/api/contact` - server-side contact form endpoint
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+Run a production build before deployment.
 
-To learn more about Next.js, take a look at the following resources:
+## Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copy `.env.example` to `.env.local` and configure values as needed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `NEXT_PUBLIC_SITE_URL` - public site URL used for metadata and email context
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` - optional Google Analytics measurement ID
+- `RESEND_API_KEY` - required for contact form email delivery
+- `CONTACT_FROM_EMAIL` - sender address, preferably a verified Resend domain
+- `CONTACT_TO_EMAIL` - primary recipient for contact messages
+- `CONTACT_BACKUP_EMAIL` - optional backup recipient
+- `CONTACT_ALLOWED_ORIGIN` - optional comma-separated origin allowlist for contact submissions
 
-## Deploy on Vercel
+Do not commit real secrets.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content Updates
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Most portfolio content lives in `src/content/portfolio.ts`.
+
+Update this file to change:
+
+- profile details and professional links
+- navigation labels
+- proof signals
+- professional profile copy
+- capabilities and engineering approach
+- featured projects
+- supporting projects
+- testimonials
+- engineering case studies
+
+Page and section components live in `src/components` and `src/app`.
+
+## Deployment
+
+Vercel is the preferred deployment target. Configure the environment variables in the Vercel project settings, then deploy from the GitHub repository or Vercel CLI.

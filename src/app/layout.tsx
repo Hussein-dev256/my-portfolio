@@ -1,38 +1,40 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { MotionProvider } from "@/components/MotionProvider";
+import { Footer } from "@/components/Footer";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans-custom",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Mafabi Hussein | Software Engineer & Digital Solutions Builder",
+  title: "Mafabi Hussein | Software Engineering Portfolio",
   description:
-    "Portfolio of Mafabi Hussein, a software engineer building reliable, scalable digital solutions: websites, apps, automations, and software systems.",
+    "A recruiter and technical reviewer-focused software engineering portfolio for Mafabi Hussein, featuring full-stack projects, backend-oriented decisions, architecture, and technical trade-offs.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://mhussein.vercel.app"),
   icons: {
-    icon: "/myp-logo.png",
-    shortcut: "/myp-logo.png",
-    apple: "/myp-logo.png",
+    icon: "/my%20logo.svg",
+    shortcut: "/my%20logo.svg",
+    apple: "/my%20logo.svg",
   },
   openGraph: {
-    title: "Mafabi Hussein | Software Engineer & Digital Solutions Builder",
+    title: "Mafabi Hussein | Software Engineering Portfolio",
     description:
-      "Software engineer focused on high-performance websites, applications, and automations that drive real business results.",
+      "Inspect Hussein's software engineering work, architecture decisions, project ownership, and technical case studies.",
     type: "website",
-    images: ["/myp-logo.png"],
+    images: ["/my%20logo.svg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mafabi Hussein | Software Engineer & Digital Solutions Builder",
+    title: "Mafabi Hussein | Software Engineering Portfolio",
     description:
-      "Software engineer focused on high-performance websites, applications, and automations that drive real business results.",
-    images: ["/myp-logo.png"],
+      "Full-stack and backend-oriented software engineering portfolio with project evidence and engineering depth.",
+    images: ["/my%20logo.svg"],
   },
 };
 
@@ -42,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={plusJakartaSans.variable}>
       {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? (
         <head>
           <Script
@@ -66,10 +68,11 @@ export default function RootLayout({
         <head />
       )}
       <body
-        className={`${poppins.variable} bg-background text-foreground antialiased`}
+        className="bg-background text-foreground antialiased"
       >
         <MotionProvider>
           {children}
+          <Footer />
         </MotionProvider>
       </body>
     </html>

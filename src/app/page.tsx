@@ -1,37 +1,25 @@
 import { Hero } from "@/components/Hero";
-import { ValueSection } from "@/components/ValueSection";
-import { ServicesSection } from "@/components/ServicesSection";
+import { ProfessionalProfileSection } from "@/components/ProfessionalProfileSection";
+import { WhatIDoSection } from "@/components/WhatIDoSection";
+import { ApproachSection } from "@/components/ApproachSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
-import { WhyMeSection } from "@/components/WhyMeSection";
-import { FaqSection } from "@/components/FaqSection";
+import { EngineeringGatewaySection } from "@/components/EngineeringGatewaySection";
 import { ContactSection } from "@/components/ContactSection";
-import { Footer } from "@/components/Footer";
+import { Atmosphere } from "@/components/Atmosphere";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <main className="flex flex-col gap-8 pb-16 pt-4 md:gap-16 md:pt-8">
+    <div className="relative min-h-screen text-neutral-950">
+      <Atmosphere />
+      <main className="overflow-x-clip">
         <Hero />
-
-        <div className="section-separator" aria-hidden="true" />
-        <ValueSection />
-
-        <div className="section-separator" aria-hidden="true" />
-        <ServicesSection />
-
-        <div className="section-separator" aria-hidden="true" />
+        <ProfessionalProfileSection />
+        <WhatIDoSection />
         <ProjectsSection />
-
-        <div className="section-separator" aria-hidden="true" />
-        <WhyMeSection />
-
-        <div className="section-separator" aria-hidden="true" />
-        <FaqSection />
-
-        <div className="section-separator" aria-hidden="true" />
+        <ApproachSection />
+        <EngineeringGatewaySection />
         <ContactSection />
       </main>
-      <Footer />
     </div>
   );
 }

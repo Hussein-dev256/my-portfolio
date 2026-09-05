@@ -1,18 +1,21 @@
 export const siteConfig = {
   name: "Mafabi Hussein",
-  role: "Software Engineer & Digital Solutions Builder",
+  role: "Software Engineer",
   heroTagline:
-    "Crafting reliable, scalable, and high-impact digital solutions — from websites and apps to automations and software systems.",
-  emailFallback: "your@email.com",
+    "Full-stack and backend-oriented software engineer working across TypeScript, Node.js, React, and PostgreSQL.",
+  emailFallback: "husseintech256@gmail.com",
+  phone: "+256 760 305 803",
+  website: "mhussein.vercel.app",
   social: {
-    x: "https://x.com/your-handle",
-    github: "https://github.com/your-handle",
-    linkedin: "https://www.linkedin.com/in/your-handle",
-    whatsapp: "https://wa.me/256000000000", // TODO: replace with your full international WhatsApp number
+    x: "https://x.com/son_of_antonn",
+    github: "https://github.com/Hussein-dev256",
+    linkedin: "https://www.linkedin.com/in/hussein-hussein-7a8a2436b/",
+    whatsapp: "https://wa.me/256760305803",
   },
   nav: [
-    { label: "See my work", href: "#work" },
-    { label: "My services", href: "#services" },
-    { label: "Hire me", href: "#contact" },
+    { label: "Home", shortLabel: "Home", href: "/" },
+    { label: "Work", shortLabel: "Work", href: "/work" },
+    { label: "Engineering", shortLabel: "Eng", href: "/engineering" },
+    { label: "Contact", shortLabel: "Talk", href: "/contact" },
   ],
 } as const;
