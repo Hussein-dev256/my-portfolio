@@ -1016,28 +1016,123 @@ export const secondaryProjects = [
 
 export const supportingProjects = secondaryProjects;
 
-export const engineeringApproach = [
+export interface EngineeringApproachStage {
+  step: string;
+  kicker: string;
+  title: string;
+  coreQuestion: string;
+  summary: string;
+  keyInquiries: string[];
+  groundingDecision?: {
+    project: string;
+    tradeoff: string;
+  };
+}
+
+export const engineeringApproachStages: readonly EngineeringApproachStage[] = [
   {
-    title: "Architecture & Boundaries",
-    body: "Establish explicit component, database, and service boundaries before adding operational complexity.",
+    step: "01",
+    kicker: "Stage 01 · Problem Definition",
+    title: "Deconstruct the Problem Before Technology",
+    coreQuestion: "What problem are we actually solving, and what is explicitly out of scope?",
+    summary:
+      "Real engineering never begins with framework selection. It starts by establishing operational context, understanding user needs, and defining rigid boundaries around project scope.",
+    keyInquiries: [
+      "Distinguish genuine user workflows and business objectives from surface-level feature wishlists.",
+      "Establish explicit non-goals: identify what the system will intentionally not support in this iteration.",
+      "Explore edge-case workflows (e.g. what 'checkout' actually means during network dropouts or payment delays).",
+    ],
   },
   {
-    title: "Backend APIs & State",
-    body: "Control state transitions strictly on the server with deterministic state machines, validation, and authorization.",
+    step: "02",
+    kicker: "Stage 02 · Requirements & Constraints",
+    title: "Isolate Requirements & Hard Constraints",
+    coreQuestion: "What must the system do, and what limitations dictate the solution?",
+    summary:
+      "Turn ambiguous ideas into concrete engineering specifications across functional rules, non-functional requirements, and real-world environmental limits.",
+    keyInquiries: [
+      "Functional: Map entity lifecycles, user permissions, state transitions, and transactional boundaries.",
+      "Non-Functional: Establish latency budgets, throughput targets, security requirements, and maintainability.",
+      "Constraints: Factor in deployment infrastructure, delivery windows, mobile thermal limits, and third-party API quotas.",
+    ],
   },
   {
-    title: "Relational Modeling",
-    body: "Model PostgreSQL tables around real business entities, enforcing integrity and RLS at the persistence layer.",
+    step: "03",
+    kicker: "Stage 03 · Architecture & Trade-Offs",
+    title: "Design Boundaries & Make Defensible Trade-Offs",
+    coreQuestion: "Which architecture satisfies requirements without introducing unearned operational complexity?",
+    summary:
+      "Architecture is a consequence of requirements and constraints—not fashion. I evaluate alternatives pragmatically, choosing solutions that solve the problem with the least operational overhead.",
+    keyInquiries: [
+      "Define strict system boundaries: separate client runtimes, centralized API gateways, and persistent stores.",
+      "Evaluate trade-offs: choose modular monolithic architectures over microservices when operational simplicity outweighs distributed isolation.",
+    ],
+    groundingDecision: {
+      project: "Oakley Platform",
+      tradeoff:
+        "Selected a single modular Node.js API with strict domain separation rather than microservices, eliminating multi-service deployment overhead while preserving isolation.",
+    },
   },
   {
-    title: "Reliability & Idempotency",
-    body: "Anticipate real-world failure cases: idempotent requests, background reconciliation, and automated test harnesses.",
+    step: "04",
+    kicker: "Stage 04 · Data Modeling & State",
+    title: "Model Relational Data & Enforce State Invariants",
+    coreQuestion: "How is data owned, normalized, transitioned, and protected at the database engine level?",
+    summary:
+      "The data model is the architectural foundation of backend systems. I design normalized relational schemas with explicit constraints, foreign keys, and database-enforced security.",
+    keyInquiries: [
+      "Model relational tables around real business entities with strict foreign keys, indexes, and transactional boundaries.",
+      "Implement multi-dimensional state machines rather than collapsing orthogonal workflows into a fragile single status flag.",
+      "Enforce tenant isolation directly at the database engine using PostgreSQL Row-Level Security (RLS).",
+    ],
   },
   {
-    title: "Delivery & Ownership",
-    body: "Own the complete path from architectural decisions and implementation to deployment, testing, and monitoring.",
+    step: "05",
+    kicker: "Stage 05 · Contracts & Failure Modes",
+    title: "Design Strict API Contracts & Plan for Failure",
+    coreQuestion: "What happens when this fails, times out, or receives malformed/malicious input?",
+    summary:
+      "A senior engineer does not design only for the happy path. I guard boundaries with schema-validated request/response contracts, idempotent mutations, and defensive fallback paths.",
+    keyInquiries: [
+      "Validate every incoming boundary with runtime schemas (Zod), verify JWT claims, and return structured error codes.",
+      "Ensure idempotent endpoints for order creation and state transitions to prevent duplicate processing.",
+    ],
+    groundingDecision: {
+      project: "ObjectID Scanner",
+      tradeoff:
+        "Implemented an automatic fallback bridge: runs fast on-device TFLite first; if confidence score < 0.65, escalates to cloud vision, defaulting safely if offline.",
+    },
+  },
+  {
+    step: "06",
+    kicker: "Stage 06 · Build & Validation",
+    title: "Executable Implementation & Behavioral Validation",
+    coreQuestion: "Does the implementation uphold architectural invariants under edge and failure conditions?",
+    summary:
+      "Implementation translates design into readable, modular code with isolated responsibilities, followed by rigorous verification of both normal and degraded behavior.",
+    keyInquiries: [
+      "Keep module responsibilities cleanly decoupled with single-direction dependency flows and strict TypeScript types.",
+      "Verify system behavior against invalid payloads, boundary extremes, authorization violations, and timeout scenarios.",
+      "Test database migrations and query performance against real relational engines before production rollout.",
+    ],
+  },
+  {
+    step: "07",
+    kicker: "Stage 07 · Observability & Iteration",
+    title: "Continuous Observability & The Iterative Loop",
+    coreQuestion: "How does the system behave under real usage, and what does production feedback teach us?",
+    summary:
+      "Engineering does not end when code compiles or ships. Production telemetry and user interactions reveal real-world assumptions, closing the loop back into problem understanding.",
+    keyInquiries: [
+      "Transition focus from 'Does the code compile?' to 'Does the system remain reliable when real users stress it?'",
+      "Monitor structured logs, error rates, slow database queries, and state anomalies in production environments.",
+      "Close the loop: feed operational discoveries and constraint shifts directly back into the next architectural iteration.",
+    ],
   },
 ] as const;
+
+export const engineeringApproach = engineeringApproachStages;
+
 
 export const technicalProfile = [
   {
