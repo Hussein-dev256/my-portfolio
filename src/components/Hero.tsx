@@ -26,7 +26,7 @@ export function Hero() {
               <Navbar />
             </motion.div>
 
-            <div className="relative grid gap-7 pb-8 pt-5 sm:pb-10 sm:pt-7 lg:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[390px_minmax(0,1fr)] lg:items-center lg:gap-8 xl:gap-12 lg:pb-6 lg:pt-2">
+            <div className="relative grid gap-7 pb-8 pt-5 sm:pb-10 sm:pt-7 lg:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[390px_minmax(0,1fr)] lg:items-center lg:gap-8 xl:gap-12 lg:pb-6 lg:pt-5">
               {/* Left Column: Portrait Cutout Image with Liquid Glass Badges */}
               <motion.div
                 variants={fadeInUp}
@@ -34,12 +34,12 @@ export function Hero() {
               >
                 <div className="relative flex h-[440px] sm:h-[480px] lg:h-[390px] xl:h-[420px] w-full items-end justify-center">
                   {/* Liquid Glass Top Pill Badge */}
-                  <div className="absolute -top-2.5 left-0 sm:-top-3 sm:-left-2 lg:-top-3.5 lg:-left-3 xl:-left-4 z-20 flex items-center gap-2 rounded-full border border-white/80 bg-gradient-to-r from-white/85 via-white/60 to-white/75 px-3 py-1.5 sm:px-3.5 sm:py-1.5 text-neutral-950 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_20px_rgba(0,0,0,0.08),inset_0_1.5px_1px_rgba(255,255,255,1)]">
-                    <span className="relative flex h-2 w-2 items-center justify-center">
+                  <div className="absolute top-2 left-0 sm:top-2.5 sm:left-0 lg:top-2 lg:-left-2 xl:-left-3 z-20 flex items-center gap-1.5 rounded-full border border-white/80 bg-gradient-to-r from-white/85 via-white/60 to-white/75 px-3 py-1 sm:px-3.5 sm:py-1.5 text-neutral-950 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_20px_rgba(0,0,0,0.08),inset_0_1.5px_1px_rgba(255,255,255,1)]">
+                    <span className="relative flex h-1.5 w-1.5 items-center justify-center">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-400 opacity-75" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-yellow-500" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-yellow-500" />
                     </span>
-                    <span className="text-[0.62rem] sm:text-[0.66rem] font-black uppercase tracking-[0.14em] text-neutral-900">
+                    <span className="text-[0.62rem] sm:text-[0.65rem] font-black uppercase tracking-[0.14em] text-neutral-900">
                       Software Engineer
                     </span>
                   </div>
