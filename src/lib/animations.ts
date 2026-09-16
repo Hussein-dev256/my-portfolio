@@ -1,32 +1,32 @@
 import { Variants } from "framer-motion";
 
-// Standard transition settings
+// Standard transition settings optimized for snappy perceived responsiveness
 export const transitions = {
   spring: {
     type: "spring",
-    stiffness: 100,
-    damping: 20,
-    mass: 10,
+    stiffness: 140,
+    damping: 22,
+    mass: 1,
   },
   easeOut: {
     type: "tween",
     ease: "easeOut",
-    duration: 0.4,
+    duration: 0.3,
   },
   easeOutSlow: {
     type: "tween",
     ease: "easeOut",
-    duration: 0.6,
+    duration: 0.45,
   },
 };
 
 // Fade in and move up (for paragraphs, section headers, general blocks)
 export const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0, y: 10 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: transitions.easeOutSlow 
+    transition: transitions.easeOut 
   },
 };
 
@@ -44,7 +44,7 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.04,
     },
   },
 };
@@ -54,7 +54,7 @@ export const staggerContainerFast: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05,
+      staggerChildren: 0.025,
     },
   },
 };

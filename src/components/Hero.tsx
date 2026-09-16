@@ -51,6 +51,7 @@ export function Hero() {
                       alt="Mafabi Hussein, software engineer"
                       fill
                       priority
+                      fetchPriority="high"
                       sizes="(min-width: 1024px) 390px, (min-width: 640px) 380px, 90vw"
                       className="object-contain object-bottom drop-shadow-[0_14px_28px_rgba(0,0,0,0.12)]"
                     />

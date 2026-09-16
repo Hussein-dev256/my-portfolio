@@ -76,9 +76,17 @@ export default function WorkPage() {
                       </div>
 
                       <div
-                        className="relative aspect-[16/10] w-full max-w-full overflow-hidden bg-black"
+                        className="relative aspect-[16/10] w-full max-w-full overflow-hidden bg-[#0c0c0c]"
                         style={{ contain: "paint", isolation: "isolate" }}
                       >
+                        {!project.useScreenshot && (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0c0c0c] text-white/40 select-none">
+                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-yellow-300/30 border-t-yellow-300" />
+                            <span className="text-[0.6rem] font-bold tracking-wider uppercase text-white/50">
+                              Connecting to live system...
+                            </span>
+                          </div>
+                        )}
                         {project.useScreenshot ? (
                           <Image
                             src={project.imageSrc}
@@ -252,9 +260,15 @@ export default function WorkPage() {
                       </div>
 
                       <div
-                        className="relative aspect-[16/10] w-full max-w-full overflow-hidden bg-black"
+                        className="relative aspect-[16/10] w-full max-w-full overflow-hidden bg-[#0c0c0c]"
                         style={{ contain: "paint", isolation: "isolate" }}
                       >
+                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0c0c0c] text-white/40 select-none">
+                          <div className="h-4 w-4 animate-spin rounded-full border-2 border-yellow-300/30 border-t-yellow-300" />
+                          <span className="text-[0.6rem] font-bold tracking-wider uppercase text-white/50">
+                            Connecting to live system...
+                          </span>
+                        </div>
                         <iframe
                           src={project.href}
                           title={`${project.name} live preview`}
