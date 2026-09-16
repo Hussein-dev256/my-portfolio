@@ -91,7 +91,7 @@ export const profile = {
   cvHref: "/Mafabi_Hussein_CV.pdf",
   stackLine: "TypeScript · Node.js · React · Next.js · PostgreSQL",
   social: {
-    x: "https://x.com/son_of_antonn",
+    x: "https://x.com/webdeveloperUG",
     github: "https://github.com/Hussein-dev256",
     linkedin: "https://www.linkedin.com/in/hussein-hussein-7a8a2436b/",
     whatsapp: "https://wa.me/256760305803",
@@ -561,21 +561,21 @@ export const awihfCaseStudy = {
   headline: "Production Web Architecture with Strict Separation of System Responsibilities",
   overview: {
     systemDefinition:
-      "The official public web platform and operational mentorship portal for Acholi Women in Health Foundation, a healthcare NGO operating in Northern Uganda.",
+      "The official live web platform and operational mentorship portal for Acholi Women in Health Foundation, an active healthcare NGO operating in Northern Uganda.",
     problemSolved:
-      "United public healthcare storytelling, editable NGO programs, operational mentorship submissions, secure CV/document uploads, and email alerts into a unified, maintainable Next.js platform.",
+      "United public healthcare storytelling, active NGO program publishing, operational mentorship submissions, secure CV/document uploads, and automated email alerts into a live, production-deployed Next.js platform in active use by the organization.",
     whatIEngineered:
-      "Lead developer responsible for Next.js App Router architecture, Sanity CMS studio integration, Neon PostgreSQL schema, Prisma ORM queries, Cloudinary document storage, and Resend email pipelines.",
+      "Lead developer responsible for the complete production lifecycle: Next.js App Router architecture, Sanity CMS studio integration, Neon PostgreSQL schema, Prisma ORM queries, Cloudinary document storage, and Resend email pipelines.",
     technicalSignificance:
-      "Demonstrates clean architectural separation of responsibilities: editorial content (Sanity), relational operational records (Neon/PostgreSQL), binary assets (Cloudinary), and transactional delivery (Resend).",
+      "Demonstrates clean architectural separation of responsibilities in an active production system: editorial content (Sanity), relational operational records (Neon/PostgreSQL), binary assets (Cloudinary), and transactional delivery (Resend).",
     whatItProves:
-      "I understand how to design production web systems with distinct service boundaries, strict environment configurations, and predictable runtime behavior.",
+      "I understand how to architect, deploy, and maintain live production systems with distinct service boundaries, strict environment configurations, and active organizational users.",
   },
   livePreview: {
-    url: "https://awihf.vercel.app/",
-    label: "awihf.vercel.app",
+    url: "https://www.acholiwomeninhealth.org",
+    label: "acholiwomeninhealth.org",
     imageSrc: undefined,
-    imageAlt: "AWIHF Healthcare Platform Preview",
+    imageAlt: "AWIHF Official Live Platform (acholiwomeninhealth.org)",
     useScreenshot: false,
   },
   responsibilitySeparation: [
@@ -979,16 +979,17 @@ export const secondaryProjects = [
   {
     name: "Acholi Women in Health Foundation",
     slug: "awihf",
-    type: "Public Web Platform",
-    category: "Healthcare Information System",
+    type: "Live Production Platform",
+    category: "Healthcare Information System (In Active Use)",
     description:
-      "Engineered a scalable health communication platform structured around maternal care, mental health advocacy, field research data, and program reporting, designed for long-term content expansion.",
+      "Official live web platform and operational portal for Acholi Women in Health Foundation in Northern Uganda, managing maternal care advocacy, field research data, and active mentorship workflows.",
     detail:
-      "Structured with strict separation of responsibilities: Sanity CMS manages public website content, Neon PostgreSQL + Prisma stores operational mentorship applications, Cloudinary holds secure documents, and Resend manages transactional alerts.",
+      "Live in active production with strict separation of responsibilities: Sanity CMS manages editorial website content, Neon PostgreSQL + Prisma stores operational mentorship applications, Cloudinary holds secure documents, and Resend handles transactional alerts.",
     stack: ["Next.js", "TypeScript", "Sanity CMS", "Neon PostgreSQL", "Prisma", "Cloudinary", "Resend"],
-    href: "https://awihf.vercel.app/",
+    href: "https://www.acholiwomeninhealth.org",
     imageSrc: undefined,
     highlights: [
+      "Live and in active use by the organization at acholiwomeninhealth.org.",
       "Strict separation of concerns: Sanity (content) + Neon/Prisma (records) + Cloudinary (files) + Resend (email).",
       "Prisma schema synchronization with automated pre-compile typechecks.",
       "Accessibility-first component design supporting diverse regional bandwidth and screen constraints.",

@@ -14,20 +14,22 @@ export function Footer() {
       <div className="bg-yellow-300 py-10 text-black">
         <div className="section-container">
           <div className="mb-10 flex flex-col gap-5 border-b border-black/18 pb-8 lg:flex-row lg:items-end lg:justify-between">
-            <p className="display-type max-w-4xl text-5xl leading-[0.9] sm:text-6xl lg:text-7xl">
+            <p className="display-type max-w-4xl text-3xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[0.96] sm:leading-[0.9]">
               Architecture
-              <span className="editorial-type mx-3 font-normal">to</span>
+              <span className="editorial-type mx-2 sm:mx-3 font-normal">to</span>
               production.
             </p>
             <a
               href={profile.cvHref}
+              target="_blank"
+              rel="noopener noreferrer"
               className="brand-focus-ring inline-flex min-h-12 w-fit items-center rounded-full bg-black px-6 text-sm font-black text-white transition-colors hover:bg-[#181818]"
             >
-              View CV
+              View CV ↗
             </a>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-[1fr_1.35fr]">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.45fr] lg:items-start">
             <div>
               <div className="flex min-w-0 items-center gap-3">
                 <span className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full bg-black">
@@ -40,9 +42,9 @@ export function Footer() {
                   />
                 </span>
                 <div className="min-w-0">
-                  <p className="display-type text-xl leading-tight">{profile.name}</p>
-                  <p className="mt-1 text-sm font-bold text-black/65">
-                    {profile.role} / {profile.focus}
+                  <p className="display-type text-xl leading-tight whitespace-nowrap">{profile.name}</p>
+                  <p className="mt-1 text-sm font-bold text-black/65 whitespace-nowrap">
+                    {profile.role} · {profile.focus}
                   </p>
                 </div>
               </div>
@@ -53,35 +55,45 @@ export function Footer() {
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {["Full-stack", "Backend-oriented", "TypeScript", "PostgreSQL"].map((item) => (
-                  <span key={item} className="rounded-full bg-black px-3 py-2 text-xs font-black text-white">
+                  <span key={item} className="rounded-full bg-black px-3 py-2 text-xs font-black text-white whitespace-nowrap">
                     {item}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-3">
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-[0.8fr_1.1fr_1.4fr]">
               <FooterList title="Navigate">
                 {navItems.map((item) => (
-                  <a key={item.href} href={item.href} className="footer-link">
+                  <a key={item.href} href={item.href} className="footer-link whitespace-nowrap">
                     {item.label}
                   </a>
                 ))}
               </FooterList>
               <FooterList title="Core Stack">
                 {technicalProfile[0]?.items.map((item) => (
-                  <span key={item}>{item}</span>
+                  <span key={item} className="whitespace-nowrap">{item}</span>
                 ))}
               </FooterList>
               <FooterList title="Contact">
-                <a href={`mailto:${profile.email}`} className="footer-link">
+                <a href={`mailto:${profile.email}`} className="footer-link whitespace-nowrap">
                   {profile.email}
                 </a>
-                <a href={profile.cvHref} className="footer-link">
-                  CV
+                <a
+                  href={profile.cvHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-link whitespace-nowrap"
+                >
+                  Resume / CV ↗
                 </a>
-                <a href={`https://${profile.website}`} className="footer-link">
-                  {profile.website}
+                <a
+                  href={profile.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-link whitespace-nowrap"
+                >
+                  LinkedIn ↗
                 </a>
               </FooterList>
             </div>

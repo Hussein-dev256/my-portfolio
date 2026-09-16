@@ -17,7 +17,7 @@ const contactLinks = [
   { label: "Email", detail: profile.email, href: `mailto:${profile.email}`, external: false },
   { label: "GitHub", detail: "Public repositories", href: profile.social.github, external: true },
   { label: "LinkedIn", detail: "Professional profile", href: profile.social.linkedin, external: true },
-  { label: "CV", detail: "Download resume", href: profile.cvHref, external: false },
+  { label: "CV", detail: "Download resume", href: profile.cvHref, external: true },
 ] as const;
 
 function isValidEmail(email: string): boolean {
@@ -116,7 +116,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="stage-section bg-[#050505] text-white"
+      className="stage-section bg-[#050505] text-white border-t border-white/10"
       aria-labelledby="contact-heading"
     >
       <div className="section-container">
@@ -125,13 +125,16 @@ export function ContactSection() {
             <p className="section-kicker dark-kicker">Contact</p>
             <h2
               id="contact-heading"
-              className="display-type mt-4 max-w-3xl text-balance text-5xl leading-[0.92] text-white sm:text-6xl lg:text-7xl"
+              className="brand-heading mt-4 max-w-2xl text-balance text-3xl sm:text-5xl lg:text-6xl text-white"
             >
-              Looking for a software engineer?
+              Looking for a{" "}
+              <span className="editorial-type font-normal text-yellow-300">
+                software engineer?
+              </span>
             </h2>
-            <p className="brand-copy mt-5 max-w-xl font-semibold text-white/68">
+            <p className="mt-4 max-w-xl text-sm sm:text-base font-medium leading-relaxed text-white/75 border-l-2 border-yellow-300/30 pl-4">
               Explore the systems I have built, review my technical work, or
-              get in touch to discuss an engineering opportunity.
+              get in touch to discuss an engineering opportunity or collaboration.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -141,10 +144,15 @@ export function ContactSection() {
                   href={item.href}
                   target={item.external ? "_blank" : undefined}
                   rel={item.external ? "noreferrer" : undefined}
-                  className="brand-focus-ring rounded-[1rem] bg-[#141414] px-4 py-4 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#1c1c1c]"
+                  className="brand-focus-ring group rounded-[1.1rem] border border-white/10 bg-white/[0.04] p-4 text-white shadow-xs transition duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.08] hover:shadow-sm"
                 >
-                  <span className="block text-sm font-black">{item.label}</span>
-                  <span className="mt-1 block truncate text-xs text-white/58">{item.detail}</span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-black text-white">{item.label}</span>
+                    <span className="text-xs text-white/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      ↗
+                    </span>
+                  </div>
+                  <span className="mt-1 block truncate text-xs font-medium text-white/60">{item.detail}</span>
                 </a>
               ))}
             </div>
@@ -153,7 +161,7 @@ export function ContactSection() {
           <form
             id="contact-form"
             onSubmit={handleSubmit}
-            className="space-y-5 rounded-[1.4rem] border border-white/10 bg-[#080807] p-5 text-white shadow-[0_24px_70px_rgba(0,0,0,0.24)] sm:p-6"
+            className="space-y-5 rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-6 sm:p-7 text-white shadow-sm"
             noValidate
           >
             <div className="grid gap-4 md:grid-cols-2">
@@ -165,7 +173,7 @@ export function ContactSection() {
                   minLength={2}
                   maxLength={120}
                   autoComplete="name"
-                  className="brand-focus-ring h-12 w-full rounded-[0.9rem] border border-white/12 bg-white/[0.06] px-4 text-sm text-white placeholder:text-white/35"
+                  className="brand-focus-ring h-12 w-full rounded-[0.9rem] border border-white/12 bg-white/[0.05] px-4 text-sm font-medium text-white placeholder:text-white/40 transition-colors focus:bg-white/[0.08] focus:border-yellow-400"
                   placeholder="Your name"
                 />
               </FormField>
@@ -177,7 +185,7 @@ export function ContactSection() {
                   required
                   maxLength={160}
                   autoComplete="email"
-                  className="brand-focus-ring h-12 w-full rounded-[0.9rem] border border-white/12 bg-white/[0.06] px-4 text-sm text-white placeholder:text-white/35"
+                  className="brand-focus-ring h-12 w-full rounded-[0.9rem] border border-white/12 bg-white/[0.05] px-4 text-sm font-medium text-white placeholder:text-white/40 transition-colors focus:bg-white/[0.08] focus:border-yellow-400"
                   placeholder="you@example.com"
                 />
               </FormField>
@@ -189,7 +197,7 @@ export function ContactSection() {
                 name="company"
                 maxLength={160}
                 autoComplete="organization"
-                className="brand-focus-ring h-12 w-full rounded-[0.9rem] border border-white/12 bg-white/[0.06] px-4 text-sm text-white placeholder:text-white/35"
+                className="brand-focus-ring h-12 w-full rounded-[0.9rem] border border-white/12 bg-white/[0.05] px-4 text-sm font-medium text-white placeholder:text-white/40 transition-colors focus:bg-white/[0.08] focus:border-yellow-400"
                 placeholder="Company, team, or hiring context"
               />
             </FormField>
@@ -201,7 +209,7 @@ export function ContactSection() {
                 required
                 minLength={10}
                 maxLength={5000}
-                className="brand-focus-ring min-h-[150px] w-full rounded-[0.9rem] border border-white/12 bg-white/[0.06] px-4 py-3 text-sm leading-6 text-white placeholder:text-white/35"
+                className="brand-focus-ring min-h-[145px] w-full rounded-[0.9rem] border border-white/12 bg-white/[0.05] px-4 py-3 text-sm font-medium leading-6 text-white placeholder:text-white/40 transition-colors focus:bg-white/[0.08] focus:border-yellow-400"
                 placeholder="Share the opportunity, role context, technical question, or next step."
               />
             </FormField>
@@ -217,9 +225,9 @@ export function ContactSection() {
                 whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="brand-focus-ring inline-flex min-h-12 items-center justify-center rounded-full bg-yellow-300 px-6 text-sm font-black text-black transition-colors hover:bg-yellow-200 disabled:cursor-not-allowed disabled:opacity-70"
+                className="brand-focus-ring inline-flex min-h-12 items-center justify-center rounded-full bg-yellow-300 px-7 text-sm font-black text-black transition-colors hover:bg-yellow-200 disabled:cursor-not-allowed disabled:opacity-70 shadow-sm"
               >
-                {isSubmitting ? "Sending..." : "Send message"}
+                {isSubmitting ? "Sending..." : "Send message →"}
               </motion.button>
               <p className="text-xs leading-5 text-white/50">
                 Validation, rate limits, and secure token protection are active.
@@ -228,12 +236,12 @@ export function ContactSection() {
 
             <div aria-live="polite">
               {status.type === "success" && (
-                <p className="rounded-[1rem] border border-yellow-300/35 bg-yellow-300/10 px-4 py-3 text-sm text-yellow-100">
+                <p className="rounded-[1rem] border border-emerald-400/30 bg-emerald-950/40 px-4 py-3 text-sm font-semibold text-emerald-300">
                   {status.message}
                 </p>
               )}
               {status.type === "error" && (
-                <p className="rounded-[1rem] border border-red-300/35 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+                <p className="rounded-[1rem] border border-red-400/30 bg-red-950/40 px-4 py-3 text-sm font-semibold text-red-300">
                   {status.message}
                 </p>
               )}
@@ -256,7 +264,7 @@ function FormField({
 }) {
   return (
     <div className="space-y-2">
-      <label htmlFor={htmlFor} className="text-xs font-black uppercase tracking-[0.16em] text-white/68">
+      <label htmlFor={htmlFor} className="text-xs font-black uppercase tracking-[0.16em] text-white/70">
         {label}
       </label>
       {children}

@@ -16,7 +16,7 @@ export function RouteHeader({
         <Navbar />
         <div className="pb-16 pt-14 sm:pb-20 lg:pb-24 lg:pt-20">
           <p className="section-kicker light-kicker">{kicker}</p>
-          <h1 className="display-type mt-5 max-w-5xl text-balance text-5xl leading-[0.9] sm:text-6xl lg:text-7xl">
+          <h1 className="display-type mt-5 max-w-5xl text-balance text-3xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[0.96] sm:leading-[0.9]">
             {title}
           </h1>
           <div className="mt-6 max-w-2xl text-base font-semibold leading-7 text-neutral-700 sm:text-lg">

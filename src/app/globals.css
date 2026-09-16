@@ -184,7 +184,7 @@ iframe {
   }
 
   .footer-link {
-    @apply min-w-0 break-words rounded-md transition-colors hover:text-black;
+    @apply min-w-0 whitespace-nowrap rounded-md transition-colors hover:text-black;
   }
 }
 

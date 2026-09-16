@@ -7,7 +7,7 @@ export const siteConfig = {
   phone: "+256 760 305 803",
   website: "mhussein.vercel.app",
   social: {
-    x: "https://x.com/son_of_antonn",
+    x: "https://x.com/webdeveloperUG",
     github: "https://github.com/Hussein-dev256",
     linkedin: "https://www.linkedin.com/in/hussein-hussein-7a8a2436b/",
     whatsapp: "https://wa.me/256760305803",

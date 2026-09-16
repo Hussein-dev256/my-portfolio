@@ -3,7 +3,6 @@ import { ProfessionalProfileSection } from "@/components/ProfessionalProfileSect
 import { WhatIDoSection } from "@/components/WhatIDoSection";
 import { ApproachSection } from "@/components/ApproachSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
-import { EngineeringGatewaySection } from "@/components/EngineeringGatewaySection";
 import { ContactSection } from "@/components/ContactSection";
 import { Atmosphere } from "@/components/Atmosphere";
 
@@ -17,7 +16,6 @@ export default function Home() {
         <WhatIDoSection />
         <ProjectsSection />
         <ApproachSection />
-        <EngineeringGatewaySection />
         <ContactSection />
       </main>
     </div>

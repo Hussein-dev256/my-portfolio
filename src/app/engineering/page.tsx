@@ -532,7 +532,7 @@ export default function EngineeringPage() {
                 href={awihfCaseStudy.livePreview.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Open live platform for Acholi Women in Health Foundation"
+                aria-label="Open official live platform for Acholi Women in Health Foundation"
                 className="group/screen relative block w-full overflow-hidden rounded-xl border border-black/15 bg-black transition-all duration-300 hover:border-black/30 hover:shadow-xl"
               >
                 <div className="flex h-8 items-center justify-between border-b border-white/12 bg-[#171717] px-3 text-white">
@@ -546,20 +546,20 @@ export default function EngineeringPage() {
                     <span aria-hidden="true">↗</span>
                   </div>
                   <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-wider text-emerald-300">
-                    Live
+                    Live in Production
                   </span>
                 </div>
 
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
                   <iframe
                     src={awihfCaseStudy.livePreview.url}
-                    title="AWIHF Live Platform Preview"
+                    title="AWIHF Official Live Platform Preview"
                     loading="lazy"
                     className="pointer-events-none absolute top-0 left-0 h-[250%] w-[250%] origin-top-left scale-[0.4] border-0 select-none"
                   />
                   <div className="absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-300 group-hover/screen:opacity-100 flex items-center justify-center pointer-events-none">
                     <span className="rounded-full bg-black/80 px-3.5 py-1.5 text-xs font-bold text-yellow-200 backdrop-blur-md border border-yellow-300/40 shadow-lg">
-                      Open Live Platform ↗
+                      Open Official Website ↗
                     </span>
                   </div>
                 </div>
@@ -601,10 +601,10 @@ export default function EngineeringPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-950 hover:text-yellow-700 transition-colors"
                 >
-                  <span>Visit live platform</span>
+                  <span>Visit official live site</span>
                   <span aria-hidden="true">↗</span>
                 </a>
-                <span className="text-[0.65rem] text-neutral-500">Verified Production Deployment</span>
+                <span className="text-[0.65rem] font-bold text-emerald-800">● Active Organization Deployment</span>
               </div>
             </div>
           </div>
@@ -641,7 +641,7 @@ export default function EngineeringPage() {
               rel="noopener noreferrer"
               className="text-neutral-950 font-bold hover:text-yellow-700 whitespace-nowrap"
             >
-              Open awihf.vercel.app ↗
+              Open acholiwomeninhealth.org ↗
             </a>
           </div>
         </div>
