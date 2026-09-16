@@ -185,33 +185,33 @@ function FlagshipProject({
   return (
     <article
       id={project.slug}
-      className={`grid gap-6 lg:gap-10 lg:items-center ${
+      className={`grid gap-6 lg:gap-10 lg:items-center min-w-0 max-w-full ${
         isReversed
           ? "lg:grid-cols-[1fr_0.95fr]"
           : "lg:grid-cols-[0.95fr_1fr]"
       }`}
     >
       {/* COLUMN 1: Live Project Preview Viewport */}
-      <div className={isReversed ? "lg:order-2" : "lg:order-1"}>
+      <div className={`min-w-0 max-w-full ${isReversed ? "lg:order-2" : "lg:order-1"}`}>
         <a
           href={liveUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Open live project for ${project.name}`}
-          className="group/screen relative block w-full overflow-hidden rounded-xl border border-white/20 bg-[#0c0c0c] transition-all duration-300 hover:border-yellow-300/60 hover:shadow-[0_12px_45px_rgba(0,0,0,0.9)]"
+          className="group/screen relative block w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-white/20 bg-[#0c0c0c] transition-all duration-300 hover:border-yellow-300/60 hover:shadow-[0_12px_45px_rgba(0,0,0,0.9)]"
         >
           {/* Device / Browser Top Chrome */}
-          <div className="flex h-8 items-center justify-between border-b border-white/12 bg-[#171717] px-3">
-            <div className="flex items-center gap-1.5" aria-hidden="true">
+          <div className="flex h-8 min-w-0 items-center justify-between border-b border-white/12 bg-[#171717] px-3">
+            <div className="flex shrink-0 items-center gap-1.5" aria-hidden="true">
               <span className="h-2 w-2 rounded-full bg-yellow-400" />
               <span className="h-2 w-2 rounded-full bg-white/30" />
               <span className="h-2 w-2 rounded-full bg-white/15" />
             </div>
-            <div className="flex items-center gap-1.5 truncate px-2 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-white/60 group-hover/screen:text-yellow-200">
+            <div className="flex min-w-0 items-center gap-1.5 px-2 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-white/60 group-hover/screen:text-yellow-200">
               <span className="truncate">{project.slug}.vercel.app</span>
-              <span aria-hidden="true">↗</span>
+              <span className="shrink-0" aria-hidden="true">↗</span>
             </div>
-            <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-wider text-emerald-300">
+            <span className="shrink-0 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-wider text-emerald-300">
               Live
             </span>
           </div>
@@ -227,7 +227,7 @@ function FlagshipProject({
                 alt={project.imageAlt}
                 fill
                 sizes="(min-width: 1024px) 520px, 100vw"
-                className="object-cover object-top transition-transform duration-500 ease-out group-hover/screen:scale-[1.02]"
+                className="object-contain object-center transition-transform duration-500 ease-out group-hover/screen:scale-[1.02]"
               />
             ) : (
               <iframe
@@ -253,8 +253,8 @@ function FlagshipProject({
         </a>
 
         {/* Integrated Technologies Stack Row */}
-        <div className="mt-3.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-white/70">
-          <span className="text-[0.62rem] font-bold uppercase tracking-wider text-white/40">
+        <div className="mt-3.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-white/70 min-w-0">
+          <span className="text-[0.62rem] font-bold uppercase tracking-wider text-white/40 shrink-0">
             Stack:
           </span>
           {project.stack.map((item, idx) => (
@@ -265,7 +265,7 @@ function FlagshipProject({
         </div>
 
         {/* Direct Action Links */}
-        <div className="mt-4 flex flex-wrap items-center gap-3">
+        <div className="mt-4 flex flex-wrap items-center gap-3 min-w-0">
           <a
             href={liveUrl}
             target="_blank"
@@ -284,12 +284,12 @@ function FlagshipProject({
       </div>
 
       {/* COLUMN 2: Open Editorial Information & Engineering Context */}
-      <div className={`space-y-3 ${isReversed ? "lg:order-1" : "lg:order-2"}`}>
+      <div className={`min-w-0 max-w-full space-y-3 ${isReversed ? "lg:order-1" : "lg:order-2"}`}>
         <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-yellow-300">
           {project.number} / {project.category}
         </p>
 
-        <h3 className="display-type text-2xl font-black leading-tight text-white sm:text-3xl lg:text-4xl">
+        <h3 className="display-type text-2xl font-black leading-tight text-white sm:text-3xl lg:text-4xl text-balance">
           {project.name}
         </h3>
 
@@ -297,11 +297,11 @@ function FlagshipProject({
           {project.role}
         </p>
 
-        <p className="text-sm font-normal leading-relaxed text-white/75 sm:text-base">
+        <p className="text-sm font-normal leading-relaxed text-white/75 sm:text-base break-words">
           {project.summary}
         </p>
 
-        <p className="text-sm font-medium leading-relaxed text-white/85">
+        <p className="text-sm font-medium leading-relaxed text-white/85 break-words">
           {project.signal}
         </p>
 
@@ -309,7 +309,7 @@ function FlagshipProject({
           {project.evidence.map((item) => (
             <li key={item} className="grid grid-cols-[0.6rem_1fr] items-start gap-2.5">
               <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-yellow-300" aria-hidden="true" />
-              <span>{item}</span>
+              <span className="break-words">{item}</span>
             </li>
           ))}
         </ul>
@@ -320,7 +320,7 @@ function FlagshipProject({
             <p className="text-[0.62rem] font-black uppercase tracking-[0.18em] text-yellow-200">
               Engineering Context
             </p>
-            <p className="mt-1.5 text-xs font-normal leading-relaxed text-white/75 sm:text-sm">
+            <p className="mt-1.5 text-xs font-normal leading-relaxed text-white/75 sm:text-sm break-words">
               {project.engineeringContext}
             </p>
           </div>

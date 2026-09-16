@@ -693,21 +693,30 @@ export default function EngineeringPage() {
                       </span>
                     </div>
 
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+                    <div
+                      className="relative aspect-[16/10] w-full max-w-full overflow-hidden bg-black"
+                      style={{ contain: "paint", isolation: "isolate" }}
+                    >
                       {sys.livePreview.useScreenshot && sys.livePreview.imageSrc ? (
                         <Image
                           src={sys.livePreview.imageSrc}
                           alt={sys.livePreview.imageAlt}
                           fill
                           sizes="(min-width: 1024px) 500px, 100vw"
-                          className="object-cover object-top transition-transform duration-500 ease-out group-hover/screen:scale-[1.02]"
+                          className="object-contain object-center transition-transform duration-500 ease-out group-hover/screen:scale-[1.02]"
                         />
                       ) : (
                         <iframe
                           src={sys.livePreview.url}
                           title={`${sys.name} Live Preview`}
                           loading="lazy"
-                          className="pointer-events-none absolute top-0 left-0 h-[250%] w-[250%] origin-top-left scale-[0.4] border-0 select-none"
+                          style={{
+                            width: "250%",
+                            height: "250%",
+                            transform: "scale(0.4)",
+                            transformOrigin: "top left",
+                          }}
+                          className="pointer-events-none absolute top-0 left-0 border-0 select-none max-w-none"
                         />
                       )}
                       <div className="absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-300 group-hover/screen:opacity-100 flex items-center justify-center pointer-events-none">
