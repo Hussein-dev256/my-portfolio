@@ -389,7 +389,7 @@ export const oakleyCaseStudy = {
     label: "oakley-store.vercel.app",
     imageSrc: "/Oakley UI.svg",
     imageAlt: "Oakley Commerce Platform Storefront Preview",
-    useScreenshot: false,
+    useScreenshot: true,
   },
   architectureLayers: [
     {
@@ -892,7 +892,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "The system was architected to keep customer shopping and vendor administration cleanly separated while centralizing all critical commerce invariants—order state transitions, stock decrementing, payment proof uploads, and scheduled reconciliation—inside a single modular backend.",
     imageSrc: "/Oakley UI.svg",
     imageAlt: "Oakley Commerce Platform interface preview",
-    useScreenshot: false,
+    useScreenshot: true,
     links: [
       { label: "View live project", href: "https://oakley-store.vercel.app/", external: true },
       { label: "Explore engineering", href: "/engineering#oakley" },

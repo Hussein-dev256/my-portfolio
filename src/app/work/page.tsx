@@ -85,7 +85,7 @@ export default function WorkPage() {
                             alt={project.imageAlt}
                             fill
                             sizes="(min-width: 1024px) 520px, 100vw"
-                            className="object-cover object-top transition-transform duration-500 ease-out group-hover/screen:scale-[1.02]"
+                            className="object-contain object-center transition-transform duration-500 ease-out group-hover/screen:scale-[1.02]"
                           />
                         ) : (
                           <iframe
