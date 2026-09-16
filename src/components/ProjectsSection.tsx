@@ -216,8 +216,11 @@ function FlagshipProject({
             </span>
           </div>
 
-          {/* Screen Live Viewport (Uncropped Natural Presentation) */}
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+          {/* Screen Live Viewport (Uncropped Natural Presentation with Strict Containment) */}
+          <div
+            className="relative aspect-[16/10] w-full max-w-full overflow-hidden bg-black"
+            style={{ contain: "paint", isolation: "isolate" }}
+          >
             {project.useScreenshot ? (
               <Image
                 src={project.imageSrc}
@@ -231,7 +234,13 @@ function FlagshipProject({
                 src={liveUrl}
                 title={`${project.name} live preview`}
                 loading="lazy"
-                className="pointer-events-none absolute top-0 left-0 h-[250%] w-[250%] origin-top-left scale-[0.4] border-0 select-none"
+                style={{
+                  width: "250%",
+                  height: "250%",
+                  transform: "scale(0.4)",
+                  transformOrigin: "top left",
+                }}
+                className="pointer-events-none absolute top-0 left-0 border-0 select-none max-w-none"
               />
             )}
             {/* Subtle interactive hover overlay */}

@@ -75,7 +75,10 @@ export default function WorkPage() {
                         </span>
                       </div>
 
-                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+                      <div
+                        className="relative aspect-[16/10] w-full max-w-full overflow-hidden bg-black"
+                        style={{ contain: "paint", isolation: "isolate" }}
+                      >
                         {project.useScreenshot ? (
                           <Image
                             src={project.imageSrc}
@@ -89,7 +92,13 @@ export default function WorkPage() {
                             src={liveLink.href}
                             title={`${project.name} live preview`}
                             loading="lazy"
-                            className="pointer-events-none absolute top-0 left-0 h-[250%] w-[250%] origin-top-left scale-[0.4] border-0 select-none"
+                            style={{
+                              width: "250%",
+                              height: "250%",
+                              transform: "scale(0.4)",
+                              transformOrigin: "top left",
+                            }}
+                            className="pointer-events-none absolute top-0 left-0 border-0 select-none max-w-none"
                           />
                         )}
                         <div className="absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-300 group-hover/screen:opacity-100 flex items-center justify-center pointer-events-none">
@@ -242,12 +251,21 @@ export default function WorkPage() {
                         </span>
                       </div>
 
-                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+                      <div
+                        className="relative aspect-[16/10] w-full max-w-full overflow-hidden bg-black"
+                        style={{ contain: "paint", isolation: "isolate" }}
+                      >
                         <iframe
                           src={project.href}
                           title={`${project.name} live preview`}
                           loading="lazy"
-                          className="pointer-events-none absolute top-0 left-0 h-[250%] w-[250%] origin-top-left scale-[0.4] border-0 select-none"
+                          style={{
+                            width: "250%",
+                            height: "250%",
+                            transform: "scale(0.4)",
+                            transformOrigin: "top left",
+                          }}
+                          className="pointer-events-none absolute top-0 left-0 border-0 select-none max-w-none"
                         />
                         <div className="absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-300 group-hover/screen:opacity-100 flex items-center justify-center pointer-events-none">
                           <span className="rounded-full bg-black/80 px-3.5 py-1.5 text-xs font-bold text-yellow-200 backdrop-blur-md border border-yellow-300/40 shadow-lg">
